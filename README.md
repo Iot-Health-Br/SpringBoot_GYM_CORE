@@ -1,4 +1,4 @@
-<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/main/Logo%20Principal.jpeg?raw=true" width="200" height="200"> 
+<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/Logo%20Principal.jpeg?raw=true" width="200" height="200"> 
 
 # GYM CORE 
 
