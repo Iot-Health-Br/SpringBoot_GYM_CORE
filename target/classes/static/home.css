@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #A9F5BC;
+}
+
+/*Centralização do titulo na página*/
+.centralizado {
+    text-align: center; /* Centraliza o texto */
+    margin-top: 1%; /* Ajusta a margem superior para centralizar verticalmente, ajuste conforme necessário */
+}
+
+.container {
+    width: 40%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px 0px #ddd;
+}
+
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin: 50px 0;
+    text-align: center; /* Centraliza o texto */
+}
+
+/*CSS da combobox*/
+.label-combobox-container {
+    align-items: center;
+    text-align: center; /* Centraliza o texto */
+    padding: 5px;
+}
+
+/*CSS do texto da combobox*/
+.label-combobox-container label {
+    margin-right: 10px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group select {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #4cae4c;
+}

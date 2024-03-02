@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" th:href="@{/cadastro.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Cadastro de Usuário</h1>
+    <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" th:field="*{nome}" required>
+
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" th:field="*{cpf}" required>
+
+            <label for="dataNascimento">Data de nascimento:</label>
+            <input type="date" id="dataNascimento" th:field="*{nascimento}" required>
+
+            <label for="genero">Gênero:</label>
+            <select id="genero" th:field="*{genero}">
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <label for="estadoCivil">Estado Civil:</label>
+            <select id="estadoCivil" th:field="*{estadoCivil}">
+                <option value="">Selecione</option>
+                <option value="Casado">Casado</option>
+                <option value="Solteiro">Solteiro</option>
+                <option value="Divorciado">Divorciado</option>
+            </select>
+
+            <label for="endereco">Endereço completo:</label>
+            <input type="text" id="endereco" th:field="*{endereco}" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" required>
+
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" th:field="*{email}" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" th:field="*{senha}" required>
+
+            <label for="foto">FOTO:</label>
+            <input type="text" id="foto" th:field="*{foto}" required>
+
+            <label for="categoria">Categoria de Acesso:</label>
+            <select id="categoria" th:field="*{categoria}">
+                <option value="">Selecione</option>
+                <option value="Aluno">Casado</option>
+                <option value="Professor">Solteiro</option>
+            </select>
+
+            <!-- Continue adicionando os demais campos seguindo o mesmo padrão -->
+        </fieldset>
+
+        <!-- Adicione mais fieldsets para "Informações de Saúde", "Informações de Pagamento", e "Objetivos" -->
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</div>
+</body>
+</html>

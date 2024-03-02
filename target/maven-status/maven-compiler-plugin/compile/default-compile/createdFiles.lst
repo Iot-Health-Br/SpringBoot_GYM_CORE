@@ -1,0 +1,8 @@
+com\cadastro\usuario\Controller\LoginController.class
+com\cadastro\usuario\Model\Usuario.class
+com\cadastro\usuario\Controller\UsuarioController.class
+com\cadastro\usuario\UsuarioApplication.class
+com\cadastro\usuario\Repository\LoginRepository.class
+com\cadastro\usuario\Model\Login.class
+com\cadastro\usuario\Controller\HomeController.class
+com\cadastro\usuario\Repository\UsuarioRepository.class

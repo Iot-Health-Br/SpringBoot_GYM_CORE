@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <meta charset="UTF-8">
+
+            <link rel="stylesheet" th:href="@{/home.css}">
+
+        </head>
+        <body>
+            <div class="container">
+            <div class="centralizado">
+                <h1>Bem vindo !</h1>
+            </div>
+            <form action="#" th:action="@{/cadastro}" th:object="${usuario}" method="post"></form>
+            </div>
+        </body>
+    </html>
