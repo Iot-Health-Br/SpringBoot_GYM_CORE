@@ -6,6 +6,14 @@ body {
     padding: 20px;
 }
 
+.imagem-logo {
+    display: block; /* ou 'inline-block', dependendo da sua necessidade */
+    margin: 0 auto; /* centraliza o logo horizontalmente */
+    max-width: 20%; /* garante que o logo seja responsivo e se adapte ao contêiner pai */
+    height: auto; /* mantém a proporção da imagem */
+    /*border: 3px solid red; /* substitua por 'none' se não quiser a borda */
+}
+
 .container {
     max-width: 800px;
     margin: auto;
@@ -37,11 +45,18 @@ label {
 }
 
 input[type="date"],
-input[type="tel"],
-input[type="email"],
 input[type="password"],
 select {
     width: 15%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="tel"],
+input[type="email"]{
+    width: 30%;
     padding: 8px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
