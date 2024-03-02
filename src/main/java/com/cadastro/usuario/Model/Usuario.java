@@ -24,7 +24,7 @@ public class Usuario {
     private String email;
     private String cpf;
     private String senha;
-    private byte foto;
+    private byte[] foto;
     private String categoria;
 
     ///Informações de saúde
@@ -132,11 +132,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public byte getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(byte foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 

@@ -23,8 +23,12 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     public String cadastrarUsuario(Usuario usuario, Model model) {
-        usuarioRepository.save(usuario);
-        model.addAttribute("mensagem", "Cadastrado com sucesso");
+        try {
+            usuarioRepository.save(usuario);
+            model.addAttribute("mensagem", "Cadastrado com sucesso !");
+        } catch (Exception e) {
+            model.addAttribute("mensagem", "Erro ao Cadastrar !");
+        }
         return "cadastro";
     }
 }
