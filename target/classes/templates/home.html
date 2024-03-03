@@ -2,16 +2,28 @@
     <html xmlns:th="http://www.thymeleaf.org">
         <head>
             <meta charset="UTF-8">
-
             <link rel="stylesheet" th:href="@{/Css/home.css}">
-
         </head>
         <body>
+            <img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
             <div class="container">
-            <div class="centralizado">
-                <h1>Bem vindo !</h1>
-            </div>
-            <form action="#" th:action="@{/cadastro}" th:object="${usuario}" method="post"></form>
+                <div class="centralizado">
+                    <h1>Bem vindo !</h1>
+                </div>
+
+                <div class="btn-cadastroUSER">
+                    <form action="/cadastro" method="get">
+                        <button type="submit">Cadastrar Aluno</button>
+                    </form>
+                </div>
+
+                <div class="btn-cadastroADM">
+                    <form action="/cadastroAdm" method="get">
+                        <button type="submit">Cadastrar Professor</button>
+                    </form>
+                </div>
+                <form action="#" th:action="@{/cadastro}" th:object="${usuario}" method="post"></form>
+                <form action="#" th:action="@{/cadastroAdm.html}" th:object="${adm}" method="post"></form>
             </div>
         </body>
     </html>

@@ -1,4 +1,4 @@
-/* cadastro.css */
+/* cadastroUser.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -49,7 +49,7 @@ input[type="password"],
 select {
     width: 15%;
     padding: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -58,7 +58,7 @@ input[type="tel"],
 input[type="email"]{
     width: 30%;
     padding: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -67,7 +67,7 @@ input[type="text"]
 {
     width: 50%;
     padding: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
