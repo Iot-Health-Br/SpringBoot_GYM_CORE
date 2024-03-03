@@ -1,0 +1,88 @@
+/* cadastroUser.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.imagem-logo {
+    display: block; /* ou 'inline-block', dependendo da sua necessidade */
+    margin: 0 auto; /* centraliza o logo horizontalmente */
+    max-width: 20%; /* garante que o logo seja responsivo e se adapte ao contêiner pai */
+    height: auto; /* mantém a proporção da imagem */
+    /*border: 3px solid red; /* substitua por 'none' se não quiser a borda */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+legend {
+    padding: 0 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input[type="date"],
+input[type="password"],
+select {
+    width: 15%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="tel"],
+input[type="email"]{
+    width: 30%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]
+{
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+input[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #4cae4c;
+}

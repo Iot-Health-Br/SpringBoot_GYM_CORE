@@ -22,12 +22,6 @@
         <input type="submit" value="Login">
     </form>
 
-    <div class="link-cadastro">
-        <form action="/cadastro" method="get">
-            <button type="submit">Cadastrar</button>
-        </form>
-    </div>
-
     <div th:if="${error != null}" class="error-message">
         <p th:text="${error}"></p>
     </div>
