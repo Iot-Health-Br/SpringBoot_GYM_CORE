@@ -1,8 +1,13 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset básico e fontes */
+* {
     margin: 0;
     padding: 0;
-    background-color: #A9F5BC;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
 }
 
 .imagem-fundo {
@@ -14,78 +19,103 @@ body {
     z-index: -1;
 }
 
-/*Centralização do titulo na página*/
-.centralizado {
-    text-align: center; /* Centraliza o texto */
-    margin-top: 1%; /* Ajusta a margem superior para centralizar verticalmente, ajuste conforme necessário */
-}
-
-/*Centralização do container superior*/
-.container {
-    width: 99%;
-    margin: 1px auto;
-    padding: 5px;
-    background-color: #3E6E7D;
-    border: 1px solid #ddd;
-    box-shadow: 0px 0px 10px 0px #ddd;
-}
-
-/*Botão Cadastro*/
-.btn-cadastroADM {
-    text-align: center;
-}
-
-/*Botão Cadastro*/
-.btn-cadastroUSER {
-    text-align: center;
-}
-
-form h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin: 50px 0;
-    text-align: center; /* Centraliza o texto */
-}
-
-/*CSS da combobox*/
-.label-combobox-container {
+/* Estilos da Navbar */
+.navbar {
+    background: linear-gradient(to right, #173042, #2EFBFE);
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center; /* Centraliza o texto */
-    padding: 5px;
+    padding: 20px 0;
+    position: relative;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
 }
 
-/*CSS do texto da combobox*/
-.label-combobox-container label {
-    margin-right: 10px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.input-group input[type="text"],
-.input-group input[type="email"],
-.input-group input[type="password"],
-.input-group select {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-}
-
-.input-group button {
+.navbar-container {
     width: 100%;
-    padding: 10px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    cursor: pointer;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.input-group button:hover {
-    background-color: #4cae4c;
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.5s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.1);
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.navbar-menu {
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar-item {
+    padding: 0 15px;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.5s ease, padding 0.5s ease;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+    color: #333;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #333;
+}
+
+.navbar-auth {
+    display: flex;
+}
+
+.auth-link {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 15px;
+    font-size: 1rem;
+    transition: all 0.5s ease;
+}
+
+.auth-link:hover {
+    color: #333;
+}
+
+/* Responsividade */
+@media screen and (max-width: 960px) {
+    .navbar-menu,
+    .navbar-auth {
+        display: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 961px) {
+    .navbar-container {
+        flex-direction: row;
+    }
 }

@@ -50,5 +50,23 @@ public class UsuarioController {
         }
         return "cadastroAdm";
     }
+
+
+    /////////// Tela Teste ///////////
+    @GetMapping("/teste")
+    public String mostrarFormularioDeCadastroTeste(Model model) {
+        model.addAttribute("adm", new Adm());
+        return "teste";
+    }
+    @PostMapping("/teste")
+    public String cadastrarTeste(Adm adm, Model model) {
+        try {
+            admRepository.save(adm);
+            model.addAttribute("mensagem", "Cadastrado com sucesso !");
+        } catch (Exception e) {
+            model.addAttribute("mensagem", "Erro ao Cadastrar !");
+        }
+        return "teste";
+    }
 }
 
