@@ -10,6 +10,12 @@ body {
     background-color: #f4f4f4;
 }
 
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/*Imagem de Fundo*/
 .imagem-fundo {
     position: fixed;
     top: 0;
@@ -18,6 +24,7 @@ body {
     height: 100%;
     z-index: -1;
 }
+
 
 /* Estilos da Navbar */
 .navbar {
@@ -29,7 +36,6 @@ body {
     position: relative;
     box-shadow: 0 2px 15px rgba(0,0,0,0.2);
 }
-
 .navbar-container {
     width: 100%;
     max-width: 1200px;
@@ -37,7 +43,6 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .navbar-brand {
     color: #fff;
     font-size: 1.5rem;
@@ -45,15 +50,12 @@ body {
     text-decoration: none;
     transition: transform 0.5s ease;
 }
-
 .navbar-brand:hover {
     transform: scale(1.1);
 }
-
 .navbar-toggle {
     display: none;
 }
-
 .bar {
     display: block;
     width: 25px;
@@ -62,34 +64,28 @@ body {
     transition: all 0.3s ease-in-out;
     background-color: #fff;
 }
-
 .navbar-menu {
     list-style-type: none;
     display: flex;
 }
-
 .navbar-item {
     padding: 0 15px;
 }
-
 .navbar-link {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
     transition: color 0.5s ease, padding 0.5s ease;
 }
-
 .navbar-link:hover,
 .navbar-link.active {
     color: #333;
     padding-bottom: 3px;
     border-bottom: 2px solid #333;
 }
-
 .navbar-auth {
     display: flex;
 }
-
 .auth-link {
     text-decoration: none;
     color: #fff;
@@ -97,7 +93,6 @@ body {
     font-size: 1rem;
     transition: all 0.5s ease;
 }
-
 .auth-link:hover {
     color: #333;
 }
@@ -108,12 +103,10 @@ body {
     .navbar-auth {
         display: none;
     }
-
     .navbar-toggle {
         display: block;
     }
 }
-
 @media screen and (min-width: 961px) {
     .navbar-container {
         flex-direction: row;
@@ -127,32 +120,29 @@ body {
     align-items: center;
     min-height: 80vh; /* Ajuste conforme necessário para centralizar verticalmente */
 }
-
 .register-form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 400px; /* Ajuste a largura do formulário conforme necessário */
+    max-width: 900px; /* Ajuste a largura do formulário conforme necessário */
+    max-height: 400px; /* Defina uma altura máxima para o formulário */
+    overflow-y: auto; /* Adiciona um scrollbar vertical se necessário */
 }
-
 .input-group {
     margin-bottom: 15px;
 }
-
 .input-group label {
     display: block;
     margin-bottom: 5px;
 }
-
 .input-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 button {
     width: 100%;
     padding: 10px;
@@ -162,7 +152,55 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #0056b3;
+}
+
+
+/*Linhas do Formulário*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+}
+legend {
+    padding: 0 5px;
+    color: #333;
+    font-weight: bold;
+}
+.form-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.form-group {
+    margin-right: 20px;
+}
+label {
+    display: block;
+}
+
+/*Campos de Entrada do Formulário*/
+input{
+    width: 230px; /* Ajusta a largura dos campos */
+    height: 40px; /* Ajusta a altura dos campos */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
+}
+#nome{
+    width: 400px; /* Ajusta a largura dos campos */
+    height: 40px; /* Ajusta a altura dos campos */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
+}
+select {
+    width: 120px; /* Ajusta a largura dos campos */
+    height: 40px; /* Ajusta a altura dos campos */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
+}
+#endereco { /* Aplica estilos apenas ao campo de entrada com ID "endereco" */
+    width: 620px; /* Ajusta a largura do campo */
+    height: 40px; /* Ajusta a altura do campo */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-lo mais alto */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
 }
