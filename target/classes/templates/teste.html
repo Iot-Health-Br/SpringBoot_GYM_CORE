@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Project</title>
-  <link rel="stylesheet" href="/Css/home.css">
-</head>
-<body>
-<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
-<nav class="navbar">
-  <div class="navbar-container">
-    <a href="#" class="navbar-brand">GYM CORE</a>
-    <div class="navbar-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-    <ul class="navbar-menu">
-      <li class="navbar-item"><a href="/cadastro" class="navbar-link ">Cadastrar Aluno</a></li>
-      <li class="navbar-item"><a href="#" class="navbar-link">Messages</a></li>
-      <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
-      <li class="navbar-item"><a href="#" class="navbar-link">Tasks</a></li>
-      <li class="navbar-item"><a href="/teste" class="navbar-link active">Tela Teste ADM</a></li>
-    </ul>
-    <div class="navbar-auth">
-      <a href="/login" class="auth-link">Logout</a>
-    </div>
-  </div>
-</nav>
-</body>
-</html>
+  <html lang="pt">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>TESTE - ADM</title>
+      <link rel="stylesheet" href="/Css/teste.css">
+    </head>
+    <body>
+    <img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="#" class="navbar-brand">GYM CORE</a>
+          <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="navbar-menu">
+            <li class="navbar-item"><a href="/cadastro" class="navbar-link ">Cadastrar Aluno</a></li>
+            <li class="navbar-item"><a href="#" class="navbar-link">Messages</a></li>
+            <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
+            <li class="navbar-item"><a href="#" class="navbar-link">Tasks</a></li>
+            <li class="navbar-item"><a href="/teste" class="navbar-link active">Tela Teste ADM</a></li>
+          </ul>
+          <div class="navbar-auth">
+            <a href="#" class="auth-link">Logout</a>
+          </div>
+        </div>
+      </nav>
+      <div class="form-container">
+        <form class="register-form" th:action="@{/cadastroAdm.html}" th:object="${adm}" method="post">
+          <h2>Cadastro</h2>
+          <div class="input-group">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" th:field="*{nome}" required>
+          </div>
+          <div class="input-group">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" th:field="*{cpf}" required>
+          </div>
+          <div class="input-group">
+            <label for="dataNascimento">Data de nascimento:</label>
+            <input type="date" id="dataNascimento" th:field="*{nascimento}" required>
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </body>
+  </html>
