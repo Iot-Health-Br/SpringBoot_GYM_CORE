@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Adm {
     /// Dados Pessoais
     private Long id;
     private String nome;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date nascimento;
     private String genero;
     private String estadoCivil;
