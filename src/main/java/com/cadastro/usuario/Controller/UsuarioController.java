@@ -20,13 +20,13 @@ public class UsuarioController {
     @Autowired
     private AdmRepository admRepository;
 
-    @GetMapping("/cadastro")
+    @GetMapping("/cadastroUser")
     public String mostrarFormularioDeCadastro(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "cadastroUser";
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping("/cadastroUser")
     public String cadastrarUsuario(Usuario usuario, Model model) {
         try {
             usuarioRepository.save(usuario);
@@ -38,7 +38,7 @@ public class UsuarioController {
     }
 
 
-    ///////////////////////////////////////
+    //////////////////Cadastro Professor/////////////////////
 
     @GetMapping("/cadastroAdm")
     public String mostrarFormularioDeCadastroAdm(Model model) {
@@ -46,27 +46,27 @@ public class UsuarioController {
         return "cadastroAdm";
     }
     @PostMapping("/cadastroAdm")
-    public String cadastrarAdm(Adm adm, Model model) {
+    public String cadastrarAdm(Adm adm, RedirectAttributes redirectAttributes) {
         try {
             admRepository.save(adm);
-            model.addAttribute("mensagem", "Cadastrado com sucesso !");
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
         } catch (Exception e) {
-            model.addAttribute("mensagem", "Erro ao Cadastrar !");
+            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
         }
-        return "cadastroAdm";
+        return "redirect:/cadastroAdm";
     }
 
 
     /////////// Tela Teste ///////////
     @GetMapping("/teste")
     public String mostrarFormularioDeCadastroTeste(Model model) {
-        model.addAttribute("adm", new Adm());
+        model.addAttribute("user", new Usuario());
         return "teste";
     }
     @PostMapping("/teste")
-    public String cadastrarTeste(Adm adm, RedirectAttributes redirectAttributes) {
+    public String cadastrarTeste(Usuario user, RedirectAttributes redirectAttributes) {
         try {
-            admRepository.save(adm); // Tenta salvar os dados no banco
+            usuarioRepository.save(user); // Tenta salvar os dados no banco
             redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
