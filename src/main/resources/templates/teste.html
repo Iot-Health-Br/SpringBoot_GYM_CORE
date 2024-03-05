@@ -30,7 +30,7 @@
       </nav>
 
       <div class="form-container">
-        <form class="register-form" th:action="@{/cadastroAdm.html}" th:object="${adm}" method="post">
+          <form class="register-form" th:action="@{/teste}" th:object="${adm}" method="post">
           <h2>Teste - Cadastro Professor</h2>
           <fieldset>
             <legend>Dados Pessoais</legend>
@@ -106,12 +106,17 @@
             <p id="mensagemErro" style="color: red; display: none;">As senhas não coincidem.</p>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-            </div>
-          </div>
-
           <button type="submit">Cadastrar</button>
+            <div class="form-container">
+              <!-- Verifica se a mensagem de sucesso existe e exibe -->
+              <div th:if="${mensagemSucesso}" class="alert alert-success" role="alert">
+                <p th:text="${mensagemSucesso}"></p>
+              </div>
+              <!-- Verifica se a mensagem de erro existe e exibe -->
+              <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
+                <p th:text="${mensagemErro}"></p>
+              </div>
+            </div>
           </fieldset>
         </form>
       </div>
