@@ -5,17 +5,9 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
     background-color: #f4f4f4;
 }
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-/*Imagem de Fundo*/
 .imagem-fundo {
     position: fixed;
     top: 0;
@@ -24,7 +16,6 @@ h2 {
     height: 100%;
     z-index: -1;
 }
-
 
 /* Estilos da Navbar */
 .navbar {
@@ -96,7 +87,6 @@ h2 {
 .auth-link:hover {
     color: #333;
 }
-
 /* Responsividade */
 @media screen and (max-width: 960px) {
     .navbar-menu,
@@ -113,25 +103,58 @@ h2 {
     }
 }
 
+/*Linhas do formulário*/
+.form-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.form-group {
+    margin-right: 20px;
+}
+label {
+    display: block;
+}
+
+/*Titulo do Formulário*/
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/*Linhas do Formulário*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 15px;
+}
 /* Estilos do Formulário */
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 1vh; /* Ajuste conforme necessário para centralizar verticalmente */
+    min-height: 80vh; /* Ajuste conforme necessário para centralizar verticalmente */
+}
+/* Erro msg do Formulário */
+.form-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 5vh; /* Ajuste conforme necessário para centralizar verticalmente */
 }
 .register-form {
+    margin-top: 20px;
     background-color: #fff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 900px; /* Ajuste a largura do formulário conforme necessário */
-    max-height: 500px; /* Defina uma altura máxima para o formulário */
-    /*overflow-y: auto; /* Adiciona um scrollbar vertical se necessário */
+    max-width: 1000px; /* Ajuste a largura do formulário conforme necessário */
+    max-height: 480px; /* Defina uma altura máxima para o formulário */
+
 }
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-right: 20px;
 }
 .input-group label {
     display: block;
@@ -144,7 +167,7 @@ h2 {
     border-radius: 4px;
 }
 button {
-    margin-top: 15px;
+    margin-top: 20px;
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -158,50 +181,10 @@ button:hover {
 }
 
 
-/*Linhas do Formulário*/
-fieldset {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 15px;
-}
-legend {
-    padding: 0 5px;
-    color: #333;
-    font-weight: bold;
-}
-.form-row {
-    display: flex;
-    margin-bottom: 10px;
-}
-.form-group {
-    margin-right: 20px;
-}
-label {
-    display: block;
-}
 
-/*Campos de Entrada do Formulário*/
-input{
-    width: 230px; /* Ajusta a largura dos campos */
-    height: 30px; /* Ajusta a altura dos campos */
-    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
-    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
-}
-#nome{
-    width: 400px; /* Ajusta a largura dos campos */
-    height: 30px; /* Ajusta a altura dos campos */
-    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
-    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
-}
 select {
     width: 120px; /* Ajusta a largura dos campos */
     height: 30px; /* Ajusta a altura dos campos */
     padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
-    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
-}
-#endereco { /* Aplica estilos apenas ao campo de entrada com ID "endereco" */
-    width: 620px; /* Ajusta a largura do campo */
-    height: 30px; /* Ajusta a altura do campo */
-    padding: 5px; /* Adiciona um pouco de espaço interno para torná-lo mais alto */
     font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
 }
