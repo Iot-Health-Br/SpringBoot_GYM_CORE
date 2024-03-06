@@ -103,6 +103,18 @@ body {
     }
 }
 
+/*Linhas do formulário*/
+.form-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.form-group {
+    margin-right: 20px;
+}
+label {
+    display: block;
+}
+
 
 
 /*Linhas do Formulário*/
@@ -130,6 +142,7 @@ fieldset {
 }
 .input-group {
     margin-bottom: 15px;
+    margin-right: 20px;
 }
 .input-group label {
     display: block;
@@ -152,4 +165,13 @@ button {
 }
 button:hover {
     background-color: #0056b3;
+}
+
+
+
+select {
+    width: 120px; /* Ajusta a largura dos campos */
+    height: 30px; /* Ajusta a altura dos campos */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
 }
