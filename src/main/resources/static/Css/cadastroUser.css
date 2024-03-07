@@ -1,88 +1,183 @@
-/* cadastroUser.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Reset básico e fontes */
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: #f4f4f4;
+}
+.imagem-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-.imagem-logo {
-    display: block; /* ou 'inline-block', dependendo da sua necessidade */
-    margin: 0 auto; /* centraliza o logo horizontalmente */
-    max-width: 20%; /* garante que o logo seja responsivo e se adapte ao contêiner pai */
-    height: auto; /* mantém a proporção da imagem */
-    /*border: 3px solid red; /* substitua por 'none' se não quiser a borda */
+/* Estilos da Navbar */
+.navbar {
+    background: linear-gradient(to right, #173042, #2EFBFE);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.5s ease;
+}
+.navbar-brand:hover {
+    transform: scale(1.1);
+}
+.navbar-toggle {
+    display: none;
+}
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+.navbar-menu {
+    list-style-type: none;
+    display: flex;
+}
+.navbar-item {
+    padding: 0 15px;
+}
+.navbar-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.5s ease, padding 0.5s ease;
+}
+.navbar-link:hover,
+.navbar-link.active {
+    color: #333;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #333;
+}
+.navbar-auth {
+    display: flex;
+}
+.auth-link {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 15px;
+    font-size: 1rem;
+    transition: all 0.5s ease;
+}
+.auth-link:hover {
+    color: #333;
+}
+/* Responsividade */
+@media screen and (max-width: 960px) {
+    .navbar-menu,
+    .navbar-auth {
+        display: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+}
+@media screen and (min-width: 961px) {
+    .navbar-container {
+        flex-direction: row;
+    }
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/*Linhas do formulário*/
+.form-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.form-group {
+    margin-right: 20px;
+}
+label {
+    display: block;
 }
 
-h1 {
+/*Titulo do Formulário*/
+h2 {
     text-align: center;
     color: #333;
 }
 
+/*Linhas do Formulário*/
 fieldset {
     border: 1px solid #ddd;
     padding: 10px;
+    margin-top: 15px;
+}
+/* Estilos do Formulário */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Ajuste conforme necessário para centralizar verticalmente */
+}
+.register-form {
     margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 1000px; /* Ajuste a largura do formulário conforme necessário */
+    max-height: 480px; /* Defina uma altura máxima para o formulário */
+    overflow-y: auto; /* Adiciona um scrollbar vertical se necessário */
 }
-
-legend {
-    padding: 0 5px;
-    color: #333;
-    font-weight: bold;
+.input-group {
+    margin-bottom: 15px;
+    margin-right: 20px;
 }
-
-label {
+.input-group label {
     display: block;
-    margin: 15px 0 5px;
+    margin-bottom: 5px;
 }
-
-input[type="date"],
-input[type="password"],
-select {
-    width: 15%;
-    padding: 8px;
-    margin-bottom: 20px;
+.input-group input {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-input[type="tel"],
-input[type="email"]{
-    width: 30%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="text"]
-{
-    width: 50%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-
-input[type="submit"] {
-    background-color: #5cb85c;
-    color: white;
-    padding: 10px 20px;
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+}
+button:hover {
+    background-color: #0056b3;
 }
 
-input[type="submit"]:hover {
-    background-color: #4cae4c;
+
+
+select {
+    width: 120px; /* Ajusta a largura dos campos */
+    height: 30px; /* Ajusta a altura dos campos */
+    padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
+    font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
 }
