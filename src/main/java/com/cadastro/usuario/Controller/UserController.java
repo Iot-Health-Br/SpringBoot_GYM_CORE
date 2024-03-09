@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class UserController {
 
-    @GetMapping("/home")
+    @GetMapping("/homeUser")
     public String home() {
-        return "home"; // Retorna o nome do arquivo home.html que está em src/main/resources/templates
+        return "homeUser"; // Retorna o nome do arquivo homeAdm.html que está em src/main/resources/templates
     }
 }
-

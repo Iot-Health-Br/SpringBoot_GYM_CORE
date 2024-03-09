@@ -13,12 +13,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UsuarioController {
+public class AdmController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
     private AdmRepository admRepository;
+
+    /////////////////////////Tela Home///////////////////////////////////
+    @GetMapping("/homeAdm")
+    public String home() {
+        return "homeAdm"; // Retorna o nome do arquivo homeAdm.html que está em src/main/resources/templates
+    }
+
+    /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
 
     @GetMapping("/cadastroUser")
     public String mostrarFormularioDeCadastro(Model model) {
@@ -37,8 +45,7 @@ public class UsuarioController {
         return "cadastroUser";
     }
 
-
-    //////////////////Cadastro Professor/////////////////////
+    /////////////////////////Tela de Cadastro Professor///////////////////////////////////
 
     @GetMapping("/cadastroAdm")
     public String mostrarFormularioDeCadastroAdm(Model model) {
@@ -56,8 +63,8 @@ public class UsuarioController {
         return "redirect:/cadastroAdm";
     }
 
+    /////////////////////////Tela de Teste///////////////////////////////////
 
-    /////////// Tela Teste ///////////
     @GetMapping("/teste")
     public String mostrarFormularioDeCadastroTeste(Model model) {
         model.addAttribute("user", new Usuario());
