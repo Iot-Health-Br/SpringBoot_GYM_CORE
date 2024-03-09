@@ -1,6 +1,7 @@
 package com.cadastro.usuario.Controller;
 
-import com.cadastro.usuario.Repository.LoginRepository;
+import com.cadastro.usuario.Repository.AdmRepository;
+import com.cadastro.usuario.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     @Autowired
-    private LoginRepository loginRepository;
+    private UsuarioRepository userRepository;
+
+    @Autowired
+    private AdmRepository admRepository;
 
     // Método para exibir a página de login
     @GetMapping("/login")
@@ -24,9 +28,14 @@ public class LoginController {
     // Método para processar o login
     @PostMapping("/login")
     public ModelAndView processLogin(@RequestParam("cpf") String cpf, @RequestParam("senha") String senha) {
-        if (loginRepository.findByCpfAndSenha(cpf, senha) != null) {
-            return new ModelAndView("redirect:/home");
-        } else {
+        if (admRepository.findByCpfAndSenha(cpf, senha).isPresent()) {
+            return new ModelAndView("redirect:/homeAdm");
+        }
+        else if (userRepository.findByCpfAndSenha(cpf, senha).isPresent()) {
+            return new ModelAndView("redirect:/homeUser");
+        }
+
+        else {
             ModelAndView modelAndView = new ModelAndView("login");
             modelAndView.addObject("error", "Usuário não encontrado");
             return modelAndView;
