@@ -80,5 +80,46 @@ public class AdmController {
         }
         return "redirect:/teste"; // Redireciona para a mesma página para evitar reenvio
     }
+
+
+
+
+
+    /////////////////////////Teste do Luidy///////////////////////////////////
+
+    @GetMapping("/telaTreinoAluno")
+    public String mostrarFormularioDeCadastroLuidy(Model model) {
+        model.addAttribute("user", new Usuario());
+        return "telaTreinoAluno";
+    }
+    @PostMapping("/telaTreinoAluno")
+    public String cadastrarLuidy(Usuario user, RedirectAttributes redirectAttributes) {
+        try {
+            usuarioRepository.save(user); // Tenta salvar os dados no banco
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
+        }
+        return "redirect:/Luidy"; // Redireciona para a mesma página para evitar reenvio
+    }
+
+
+
+
+    @GetMapping("/telaMatriculaAluno")
+    public String mostrarFormularioDeMatriculaAluno(Model model) {
+        model.addAttribute("user", new Usuario());
+        return "telaTreinoAluno";
+    }
+    @PostMapping("/telaMatriculaAluno")
+    public String MatricularAluno(Usuario user, RedirectAttributes redirectAttributes) {
+        try {
+            usuarioRepository.save(user); // Tenta salvar os dados no banco
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
+        }
+        return "redirect:/Luidy"; // Redireciona para a mesma página para evitar reenvio
+    }
 }
 
