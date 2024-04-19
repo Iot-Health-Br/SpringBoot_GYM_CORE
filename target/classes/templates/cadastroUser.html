@@ -34,6 +34,15 @@
         <fieldset>
             <legend>Dados Pessoais</legend>
             <div class="form-row">
+                <div class="foto-group">
+                    <label for="foto">Foto do Usuário:</label>
+                    <!-- Elemento img para pré-visualização da imagem, movido para cima -->
+                    <img id="fotoPreview" src="#" alt="Pré-visualização da imagem" style="display: none; width: 150px; height: auto; margin-bottom: 10px;">
+                    <input type="file" id="foto" th:field="*{foto}" required>
+                </div>
+            </div>
+            <script src="/js/showPhoto.js"></script>
+            <div class="form-row">
                 <div class="input-group">
                     <label for="nome">Nome completo:</label>
                     <input type="text" id="nome" th:field="*{nome}" required>
@@ -169,8 +178,9 @@
                 </div>
             </div>
             <div class="input-group">
-                <label for="professor">Professor Responsável:</label>
-                <input type="text" id="professor" th:field="*{professorResponsável}" required>
+                <label for="professoresSelect">Professor Responsável:</label>
+                <select id="professoresSelect"></select>
+                <script src="/js/listTeachers.js"></script>
             </div>
         </fieldset>
         <fieldset>
