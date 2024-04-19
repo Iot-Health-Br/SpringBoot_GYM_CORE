@@ -1,15 +1,18 @@
 package com.cadastro.usuario.Controller;
 
 import com.cadastro.usuario.Model.Adm;
+import com.cadastro.usuario.Model.LoginUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -21,11 +24,17 @@ public class AdmController {
     private AdmRepository admRepository;
 
     /////////////////////////Tela Home///////////////////////////////////
-    @GetMapping("/homeAdm")
+    /*@GetMapping("/homeAdm")
     public String home() {
         return "homeAdm"; // Retorna o nome do arquivo homeAdm.html que está em src/main/resources/templates
+    }*/
+    @GetMapping("/homeAdm")
+    public ModelAndView home(HttpSession session) {
+        LoginUser user = (LoginUser) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView("homeAdm");
+        modelAndView.addObject("nome", user.getNome());
+        return modelAndView;
     }
-
     /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
 
     @GetMapping("/cadastroUser")
