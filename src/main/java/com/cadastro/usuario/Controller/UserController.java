@@ -10,9 +10,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
+    /*
     @GetMapping("/homeUser")
     public String home() {
         return "homeUser"; // Retorna o nome do arquivo homeAdm.html que está em src/main/resources/templates
+    }*/
+
+    @GetMapping("/homeUser")
+    public ModelAndView home(HttpSession session) {
+        LoginUser user = (LoginUser) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView("homeUser");
+        modelAndView.addObject("nome", user.getNome());
+        return modelAndView;
     }
 
     /////////////////////////Tela Minha Matricula///////////////////////////////////

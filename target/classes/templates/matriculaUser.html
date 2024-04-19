@@ -10,7 +10,7 @@
 <img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
 <nav class="navbar">
     <div class="navbar-container">
-        <a href="/homeAdm" class="navbar-brand">GYM CORE</a>
+        <a href="/homeUser" class="navbar-brand">GYM CORE</a>
         <div class="navbar-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -21,6 +21,7 @@
             <li class="navbar-item"><a href="#" class="navbar-link ">Metas da Semana</a></li>
         </ul>
         <div class="navbar-auth">
+            <p>Olá, <span th:text="${nome}">Nome do Usuário</span></p>
             <a href="/login" class="auth-link">Logout</a>
         </div>
     </div>
