@@ -6,14 +6,20 @@ import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
 
+import com.cadastro.usuario.Service.AdmService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class AdmController {
@@ -88,6 +94,20 @@ public class AdmController {
             redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
         }
         return "redirect:/teste"; // Redireciona para a mesma página para evitar reenvio
+    }
+
+    /////////////////////////API Lista de Professor ///////////////////////////////////
+    @RestController
+    @RequestMapping("/api/professores")
+    public class ProfessorController {
+        @Autowired
+        private AdmService admService;
+
+        @GetMapping
+        public ResponseEntity<List<Adm>> getProfessores() {
+            List<Adm> professores = admService.listarTodosOsProfessores();
+            return ResponseEntity.ok().body(professores);
+        }
     }
 }
 

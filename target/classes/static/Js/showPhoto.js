@@ -1,9 +1,15 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var fotoInput = document.getElementById('foto');
+    var fotoPreview = document.getElementById('fotoPreview');
 
-function previewImage(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        var output = document.getElementById('imagePreview');
-        output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
+    fotoInput.addEventListener('change', function(event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                fotoPreview.src = e.target.result;
+                fotoPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+});
