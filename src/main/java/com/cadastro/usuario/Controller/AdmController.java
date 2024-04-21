@@ -2,8 +2,10 @@ package com.cadastro.usuario.Controller;
 
 import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.LoginUser;
+import com.cadastro.usuario.Model.Teste;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
+import com.cadastro.usuario.Repository.TesteRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
 
 import com.cadastro.usuario.Service.AdmService;
@@ -28,6 +30,8 @@ public class AdmController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private AdmRepository admRepository;
+    @Autowired
+    private TesteRepository testeRepository;
 
     /////////////////////////Tela Home///////////////////////////////////
     /*@GetMapping("/homeAdm")
@@ -82,13 +86,13 @@ public class AdmController {
 
     @GetMapping("/teste")
     public String mostrarFormularioDeCadastroTeste(Model model) {
-        model.addAttribute("user", new Usuario());
+        model.addAttribute("user", new Teste());
         return "teste";
     }
     @PostMapping("/teste")
-    public String cadastrarTeste(Usuario user, RedirectAttributes redirectAttributes) {
+    public String cadastrarTeste(Teste user, RedirectAttributes redirectAttributes) {
         try {
-            usuarioRepository.save(user); // Tenta salvar os dados no banco
+            testeRepository.save(user); // Tenta salvar os dados no banco
             redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro

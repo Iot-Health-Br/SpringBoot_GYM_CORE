@@ -172,12 +172,26 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-
-
-
 select {
     width: 120px; /* Ajusta a largura dos campos */
     height: 30px; /* Ajusta a altura dos campos */
     padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
     font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
+}
+
+
+
+/* Campo de foto */
+.foto-group img {
+    display: none;
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px; /* Espaço entre a imagem e o input */
+}
+.foto-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.foto-group {
+    margin-bottom: 20px;
 }

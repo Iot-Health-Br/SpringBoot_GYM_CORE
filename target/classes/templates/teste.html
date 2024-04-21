@@ -29,182 +29,24 @@
       </div>
       </nav>
       <div class="form-container">
-        <form class="register-form" th:action="@{/teste}" th:object="${user}" method="post">
+        <form class="register-form" th:action="@{/teste}" th:object="${user}" method="post" enctype="multipart/form-data">
           <h2>Teste - Cadastro</h2>
           <fieldset>
             <legend>Dados Pessoais</legend>
+            <div class="form-row">
+              <div class="foto-group">
+                <label for="foto">Foto do Usuário:</label>
+                <!-- Elemento img para pré-visualização da imagem, movido para cima -->
+                <img id="fotoPreview" src="#" alt="Pré-visualização da imagem" style="display: none; width: 150px; height: auto; margin-bottom: 10px;">
+                <input type="file" id="foto" th:field="*{foto}" required>
+              </div>
+            </div>
+            <script src="/js/showPhoto.js"></script>
             <div class="form-row">
               <div class="input-group">
                 <label for="nome">Nome completo:</label>
                 <input type="text" id="nome" th:field="*{nome}" required>
               </div>
-              <div class="input-group">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" th:field="*{cpf}" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="dataNascimento">Data de nascimento:</label>
-                <input type="date" id="dataNascimento" th:field="*{nascimento}" required>
-              </div>
-              <div class="input-group">
-                <label for="genero">Gênero:</label>
-                <select id="genero" th:field="*{genero}">
-                  <option value="">Selecione</option>
-                  <option value="masculino">Masculino</option>
-                  <option value="feminino">Feminino</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="estadoCivil">Estado Civil:</label>
-                <select id="estadoCivil" th:field="*{estadoCivil}">
-                  <option value="">Selecione</option>
-                  <option value="Casado">Casado</option>
-                  <option value="Solteiro">Solteiro</option>
-                  <option value="Divorciado">Divorciado</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="categoria">Categoria de Acesso:</label>
-                <select id="categoria" th:field="*{categoria}">
-                  <option value="">Selecione</option>
-                  <option value="Aluno">Aluno</option>
-                </select>
-              </div>
-            </div>
-            <div class="input-group">
-              <label for="endereco">Endereço completo:</label>
-              <input type="text" id="endereco" th:field="*{endereco}" required>
-            </div>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" th:field="*{telefone}" required>
-              </div>
-              <div class="input-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" th:field="*{email}" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" th:field="*{senha}" required>
-              </div>
-              <div class="input-group">
-                <label for="senha2">Senha:</label>
-                <input type="password" id="senha2" required>
-              </div>
-            </div>
-            <script th:src="@{/js/validaSenha.js}"></script>
-            <!-- Elemento para mostrar a mensagem de erro -->
-            <p id="mensagemErro" style="color: red; display: none;">As senhas não coincidem.</p>
-          </fieldset>
-          <fieldset>
-            <legend>Informações de saúde</legend>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="altura">Altura:</label>
-                <input type="text" id="altura" th:field="*{altura}" required>
-              </div>
-              <div class="input-group">
-                <label for="peso">Peso:</label>
-                <input type="text" id="peso" th:field="*{peso}" required>
-              </div>
-              <div class="input-group">
-                <label for="imc">IMC:</label>
-                <input type="text" id="imc" th:field="*{IMC}" required>
-              </div>
-              <div class="input-group">
-                <label for="pa">Pressão Arterial:</label>
-                <input type="text" id="pa" th:field="*{pa}" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="doenca">Doenças de Base:</label>
-                <input type="text" id="doenca" th:field="*{doencas}" required>
-              </div>
-              <div class="input-group">
-                <label for="limitacao">Limitação Fisica:</label>
-                <input type="text" id="limitacao" th:field="*{limitacaoFisica}" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="restricao">Restrição Alimentar:</label>
-                <input type="text" id="restricao" th:field="*{restricoesAlimentar}" required>
-              </div>
-              <div class="input-group">
-                <label for="medicamento">Uso do Medicamento:</label>
-                <input type="text" id="medicamento" th:field="*{usoMedicamento}" required>
-              </div>
-            </div>
-              <div class="input-group">
-                <label for="cirurgia">Histórico Cirurgico:</label>
-                <input type="text" id="cirurgia" th:field="*{hitoricoCirugico}" required>
-              </div>
-          </fieldset>
-          <fieldset>
-            <legend>Dados de Pagamento</legend>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="dataMatricula">Data de Matricula:</label>
-                <input type="date" id="dataMatricula" th:field="*{dataMatricula}" required>
-              </div>
-              <div class="input-group">
-                <label for="vencMatricula">Vencimento de Matricula:</label>
-                <input type="date" id="vencMatricula" th:field="*{vencimentoMatricula}" required>
-              </div>
-              <div class="input-group">
-                <label for="plano">Plano Escolido:</label>
-                <select id="plano" th:field="*{plano}">
-                  <option value="">Selecione</option>
-                  <option value="diamond">Diamond</option>
-                  <option value="gold">Gold</option>
-                  <option value="silver">Silver</option>
-                </select>
-              </div>
-            </div>
-            <div class="input-group">
-              <label for="professor">Professor Responsável:</label>
-              <input type="text" id="professor" th:field="*{professorResponsável}" required>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Objetivos com Academia:</legend>
-            <div class="form-row">
-              <div class="input-group">
-                <label for="experiencia">Já Treinou ?:</label>
-                <select id="experiencia" th:field="*{experiencia}">
-                  <option value="">Selecione</option>
-                  <option value="sim">Sim</option>
-                  <option value="nao">Não</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="condicionamento">Condicionamento:</label>
-                <select id="condicionamento" th:field="*{nivelCondicionamento}">
-                  <option value="">Selecione</option>
-                  <option value="sedentario">Sedentário</option>
-                  <option value="atleta">Atleta</option>
-                  <option value="ativo">Ativo</option>
-                </select>
-              </div>
-            </div>
-            <div class="input-group">
-              <label for="objetivo">Objetivo:</label>
-              <input type="text" id="objetivo" th:field="*{objetivo}" required>
-            </div>
-            <div class="input-group">
-              <label for="atividades">Atividades Fisica:</label>
-              <input type="text" id="atividades" th:field="*{atividadesFisicas}" required>
-            </div>
-            <div class="input-group">
-              <label for="expectitativa">Expectativa:</label>
-              <input type="text" id="expectitativa" th:field="*{expectitativa}" required>
             </div>
           </fieldset>
           <button type="submit">Cadastrar</button>
