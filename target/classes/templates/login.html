@@ -7,7 +7,6 @@
     <link rel="stylesheet" th:href="@{/Css/login.css}">
 </head>
 <body>
-
 <img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
 
 <div class="container">
@@ -20,11 +19,14 @@
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required><br>
         <input type="submit" value="Login">
+        <div th:if="${error != null}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
     </form>
-
-    <div th:if="${error != null}" class="error-message">
-        <p th:text="${error}"></p>
-    </div>
 </div>
 </body>
 </html>
+
+
+
+

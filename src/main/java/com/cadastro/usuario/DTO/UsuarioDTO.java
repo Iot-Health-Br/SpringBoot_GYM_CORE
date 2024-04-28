@@ -1,17 +1,13 @@
-package com.cadastro.usuario.Model;
+package com.cadastro.usuario.DTO;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Entity
-public class Usuario {
-
+public class UsuarioDTO {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    /// Dados Pessoais
     private Long id;
     private String nome;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -302,4 +298,3 @@ public class Usuario {
         this.expectitativa = expectitativa;
     }
 }
-
