@@ -2,14 +2,14 @@ package com.cadastro.usuario.Controller;
 
 import com.cadastro.usuario.DTO.AdmDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
+import com.cadastro.usuario.Exception.UserRegistred;
+import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
-import com.cadastro.usuario.Model.LoginUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
 
 import com.cadastro.usuario.Service.AdmService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -79,23 +79,29 @@ public class AdmController {
     }
 
     @PostMapping("/cadastroAdm")
-    public String handleFileUpload(@ModelAttribute AdmDTO admDTO,
-                                   @RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+    public ModelAndView handleFileUpload(@ModelAttribute AdmDTO admDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView = new ModelAndView();
         try {
             if (!file.isEmpty()) {
-                admDTO.setFoto(file.getBytes());  // Converting MultipartFile to byte[]
+                admDTO.setFoto(file.getBytes());
             }
-            admService.saveAdm(admDTO);
-            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!");
-        } catch (IOException e) {
-            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao processar o arquivo!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("mensagemErro", e.getMessage());
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.saveAdm(admDTO);
+            modelAndView.addObject("mensagemSucesso", resultado);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
         }
-        // Redirecionando para o método GET após o processamento
-        return "redirect:/cadastroAdm";
+        catch (UserAlreadyExists e) {
+            modelAndView.addObject("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return modelAndView;
     }
+
 
 
     /////////////////////////Tela de Teste///////////////////////////////////

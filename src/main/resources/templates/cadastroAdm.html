@@ -113,9 +113,16 @@
                         <!-- Elemento para mostrar a mensagem de erro -->
                         <p id="mensagemErro" style="color: red; display: none;">As senhas não coincidem.</p>
                     </fieldset>
+
                     <button type="submit">Cadastrar</button>
-                    
-                    <script th:src="@{/js/usuarioCadastrado.js}"></script>
+
+                    <div th:if="${mensagemSucesso != null}" class="success-message">
+                        <p th:text="${mensagemSucesso}"></p>
+                    </div>
+                    <div th:if="${error != null}" class="error-message">
+                        <p th:text="${error}"></p>
+                    </div>
+
                 </form>
             </div>
         </body>

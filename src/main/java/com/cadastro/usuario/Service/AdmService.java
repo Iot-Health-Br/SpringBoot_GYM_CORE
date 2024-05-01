@@ -2,6 +2,8 @@ package com.cadastro.usuario.Service;
 
 import com.cadastro.usuario.DTO.AdmDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
+import com.cadastro.usuario.Exception.UserRegistred;
+import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
@@ -25,15 +27,13 @@ public class AdmService {
         return admRepository.findAll();
     }
 
-    public void saveAdm(AdmDTO admDTO) throws Exception {
-        // Verifica se já existe um administrador com o mesmo CPF ou nome
+    public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
         boolean cpfExists = admRepository.existsByCpf(admDTO.getCpf());
         boolean nomeExists = admRepository.existsByNome(admDTO.getNome());
         if (cpfExists || nomeExists) {
-            throw new Exception("Usuário já cadastrado!");
+            throw new UserAlreadyExists("Usuário já cadastrado!");
         }
         else {
-            try {
                 Adm adm = new Adm();
                 adm.setNome(admDTO.getNome());
                 adm.setNascimento(admDTO.getNascimento());
@@ -47,12 +47,11 @@ public class AdmService {
                 adm.setFoto(admDTO.getFoto());
                 adm.setCategoria(admDTO.getCategoria());
                 admRepository.save(adm);
-            }
-            catch (Exception e) {
-                throw new Exception("Erro ao salvar o administrador", e);
-            }
+                return "Usuário cadastrado com sucesso!";
         }
     }
+
+
 
     /*
     // Definindo o ModelMapper como um bean no seu contexto do Spring
