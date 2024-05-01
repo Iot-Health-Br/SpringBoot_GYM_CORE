@@ -29,19 +29,20 @@
                 </div>
             </nav>
             <div class="form-container">
-                <form class="register-form" th:action="@{/cadastroAdm}" th:object="${adm}" method="post">
+                <form class="register-form" th:action="@{/cadastroAdm}" th:object="${admDTO}" method="post" enctype="multipart/form-data">
                     <h2>Cadastro de Professor</h2>
                     <fieldset>
                     <legend>Dados Pessoais</legend>
                         <div class="form-row">
                             <div class="foto-group">
-                                <label for="foto">Foto do Usuário:</label>
+                                <label for="file">Foto do Usuário:</label>
                                 <!-- Elemento img para pré-visualização da imagem, movido para cima -->
                                 <img id="fotoPreview" src="#" alt="Pré-visualização da imagem" style="display: none; width: 150px; height: auto; margin-bottom: 10px;">
-                                <input type="file" id="foto" th:field="*{foto}" required>
+                                <input type="file" id="file" name="file" required>
+                                <script src="/js/showPhoto.js"></script>
                             </div>
                         </div>
-                        <script src="/js/showPhoto.js"></script>
+
                         <div class="form-row">
                             <div class="input-group">
                                 <label for="nome">Nome completo:</label>
@@ -73,6 +74,7 @@
                                     <option value="Casado">Casado</option>
                                     <option value="Solteiro">Solteiro</option>
                                     <option value="Divorciado">Divorciado</option>
+                                    <option value="Viúvo">Viúvo</option>
                                 </select>
                             </div>
                             <div class="input-group">
@@ -111,17 +113,16 @@
                         <!-- Elemento para mostrar a mensagem de erro -->
                         <p id="mensagemErro" style="color: red; display: none;">As senhas não coincidem.</p>
                     </fieldset>
+
                     <button type="submit">Cadastrar</button>
-                    <div class="form-error">
-                        <!-- Verifica se a mensagem de sucesso existe e exibe -->
-                        <div th:if="${mensagemSucesso}" class="alert alert-success" role="alert">
+
+                    <div th:if="${mensagemSucesso != null}" class="success-message">
                         <p th:text="${mensagemSucesso}"></p>
                     </div>
-                        <!-- Verifica se a mensagem de erro existe e exibe -->
-                        <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
-                        <p th:text="${mensagemErro}"></p>
-                        </div>
+                    <div th:if="${error != null}" class="error-message">
+                        <p th:text="${error}"></p>
                     </div>
+
                 </form>
             </div>
         </body>

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var fotoInput = document.getElementById('foto');
+    var fotoInput = document.getElementById('file');
     var fotoPreview = document.getElementById('fotoPreview');
 
     fotoInput.addEventListener('change', function(event) {

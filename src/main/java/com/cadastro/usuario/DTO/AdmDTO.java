@@ -1,14 +1,15 @@
-package com.cadastro.usuario.Model;
+package com.cadastro.usuario.DTO;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Entity
-public class Adm {
+public class AdmDTO {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -120,5 +121,3 @@ public class Adm {
         this.categoria = categoria;
     }
 }
-
-

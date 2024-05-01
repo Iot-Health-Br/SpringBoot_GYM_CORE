@@ -2,9 +2,12 @@ package com.cadastro.usuario.Repository;
 
 import com.cadastro.usuario.Model.Adm;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
-public interface AdmRepository extends JpaRepository<Adm, Long> {
-    Optional<Adm> findByCpfAndSenha(String cpf, String senha);
+@Repository
+public interface AdmRepository extends JpaRepository<Adm, String> {
+    Adm findByCpfAndSenha(String cpf, String senha);
+    boolean existsByCpf(String cpf);
+    boolean existsByNome(String nome);
 }
