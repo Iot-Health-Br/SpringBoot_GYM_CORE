@@ -1,7 +1,7 @@
 package com.cadastro.usuario.Service;
 
 import com.cadastro.usuario.DTO.LoginDTO;
-import com.cadastro.usuario.Exception.UsuarioNaoEncontradoException;
+import com.cadastro.usuario.Exception.UserNotFound;
 import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
@@ -20,7 +20,7 @@ public class LoginService {
     private UsuarioRepository usuarioRepository;
 
     @Transactional
-    public String login(LoginDTO loginDTO) throws UsuarioNaoEncontradoException {
+    public String login(LoginDTO loginDTO) throws UserNotFound {
         Adm adm = admRepository.findByCpfAndSenha(loginDTO.getCpf(), loginDTO.getSenha());
         Usuario user = usuarioRepository.findByCpfAndSenha(loginDTO.getCpf(), loginDTO.getSenha());
         if (adm != null) {
@@ -30,7 +30,7 @@ public class LoginService {
             return "/homeUser";
         }
         else {
-            throw new UsuarioNaoEncontradoException("Usuário não encontrado");
+            throw new UserNotFound("Usuário não encontrado");
         }
     }
 }

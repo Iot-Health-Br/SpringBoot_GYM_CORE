@@ -6,9 +6,7 @@ import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,22 +26,31 @@ public class AdmService {
     }
 
     public void saveAdm(AdmDTO admDTO) throws Exception {
-        Adm adm = new Adm();
-        adm.setNome(admDTO.getNome());
-        adm.setNascimento(admDTO.getNascimento());
-        adm.setGenero(admDTO.getGenero());
-        adm.setEstadoCivil(admDTO.getEstadoCivil());
-        adm.setEndereco(admDTO.getEndereco());
-        adm.setTelefone(admDTO.getTelefone());
-        adm.setEmail(admDTO.getEmail());
-        adm.setCpf(admDTO.getCpf());
-        adm.setSenha(admDTO.getSenha());
-        adm.setFoto(admDTO.getFoto());
-        adm.setCategoria(admDTO.getCategoria());
-        try {
-            admRepository.save(adm);
-        } catch (Exception e) {
-            throw new Exception("Erro ao salvar o administrador", e);
+        // Verifica se já existe um administrador com o mesmo CPF ou nome
+        boolean cpfExists = admRepository.existsByCpf(admDTO.getCpf());
+        boolean nomeExists = admRepository.existsByNome(admDTO.getNome());
+        if (cpfExists || nomeExists) {
+            throw new Exception("Usuário já cadastrado!");
+        }
+        else {
+            try {
+                Adm adm = new Adm();
+                adm.setNome(admDTO.getNome());
+                adm.setNascimento(admDTO.getNascimento());
+                adm.setGenero(admDTO.getGenero());
+                adm.setEstadoCivil(admDTO.getEstadoCivil());
+                adm.setEndereco(admDTO.getEndereco());
+                adm.setTelefone(admDTO.getTelefone());
+                adm.setEmail(admDTO.getEmail());
+                adm.setCpf(admDTO.getCpf());
+                adm.setSenha(admDTO.getSenha());
+                adm.setFoto(admDTO.getFoto());
+                adm.setCategoria(admDTO.getCategoria());
+                admRepository.save(adm);
+            }
+            catch (Exception e) {
+                throw new Exception("Erro ao salvar o administrador", e);
+            }
         }
     }
 

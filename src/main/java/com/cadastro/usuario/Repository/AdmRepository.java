@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdmRepository extends JpaRepository<Adm, String> {
     Adm findByCpfAndSenha(String cpf, String senha);
+    boolean existsByCpf(String cpf);
+    boolean existsByNome(String nome);
 }
