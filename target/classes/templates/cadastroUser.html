@@ -38,11 +38,10 @@
                     <label for="file">Foto do Usuário:</label>
                     <!-- Elemento img para pré-visualização da imagem, movido para cima -->
                     <img id="fotoPreview" src="#" alt="Pré-visualização da imagem" style="display: none; width: 150px; height: auto; margin-bottom: 10px;">
-                    <label for="file">Upload Image:</label>
                     <input type="file" id="file" name="file" required>
+                    <script src="/js/showPhoto.js"></script>
                 </div>
             </div>
-            <script src="/js/showPhoto.js"></script>
             <div class="form-row">
                 <div class="input-group">
                     <label for="nome">Nome completo:</label>
@@ -74,7 +73,7 @@
                         <option value="Solteiro">Solteiro</option>
                         <option value="Casado">Casado</option>
                         <option value="Divorciado">Divorciado</option>
-                        <option value="Viúvo">Solteiro</option>
+                        <option value="Viúvo">Viúvo</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -182,8 +181,7 @@
             <div class="input-group">
                 <label for="professoresSelect">Professor Responsável:</label>
                 <select id="professoresSelect" th:field="*{professorResponsavel}">
-                    <option value="">Selecione</option>
-                    <script src="/js/listTeachers.js"></script> </select>
+                <script src="/js/listTeachers.js"></script></select>
             </div>
         </fieldset>
         <fieldset>

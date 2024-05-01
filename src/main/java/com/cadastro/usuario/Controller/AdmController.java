@@ -81,20 +81,22 @@ public class AdmController {
     @PostMapping("/cadastroAdm")
     public String handleFileUpload(@ModelAttribute AdmDTO admDTO,
                                    @RequestParam("file") MultipartFile file,
-                                   Model model) {
+                                   RedirectAttributes redirectAttributes) {
         try {
             if (!file.isEmpty()) {
                 admDTO.setFoto(file.getBytes());  // Converting MultipartFile to byte[]
             }
             admService.saveAdm(admDTO);
-            model.addAttribute("mensagem", "Cadastrado com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!");
         } catch (IOException e) {
-            model.addAttribute("mensagem", "Erro ao processar o arquivo!");
+            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao processar o arquivo!");
         } catch (Exception e) {
-            model.addAttribute("mensagem", e.getMessage());
+            redirectAttributes.addFlashAttribute("mensagemErro", e.getMessage());
         }
-        return "/cadastroAdm";
+        // Redirecionando para o método GET após o processamento
+        return "redirect:/cadastroAdm";
     }
+
 
     /////////////////////////Tela de Teste///////////////////////////////////
     @GetMapping("/teste")

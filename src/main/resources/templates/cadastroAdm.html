@@ -38,11 +38,11 @@
                                 <label for="file">Foto do Usuário:</label>
                                 <!-- Elemento img para pré-visualização da imagem, movido para cima -->
                                 <img id="fotoPreview" src="#" alt="Pré-visualização da imagem" style="display: none; width: 150px; height: auto; margin-bottom: 10px;">
-                                <label for="file">Upload Image:</label>
                                 <input type="file" id="file" name="file" required>
+                                <script src="/js/showPhoto.js"></script>
                             </div>
                         </div>
-                        <script src="/js/showPhoto.js"></script>
+
                         <div class="form-row">
                             <div class="input-group">
                                 <label for="nome">Nome completo:</label>
@@ -74,6 +74,7 @@
                                     <option value="Casado">Casado</option>
                                     <option value="Solteiro">Solteiro</option>
                                     <option value="Divorciado">Divorciado</option>
+                                    <option value="Viúvo">Viúvo</option>
                                 </select>
                             </div>
                             <div class="input-group">
@@ -113,22 +114,8 @@
                         <p id="mensagemErro" style="color: red; display: none;">As senhas não coincidem.</p>
                     </fieldset>
                     <button type="submit">Cadastrar</button>
-
-
-                    <div class="form-error">
-                        <div th:if="${mensagem} != null" th:text="${mensagem}"></div>
-                    </div>
-
-                    <div class="form-error">
-                        <!-- Verifica se a mensagem de sucesso existe e exibe -->
-                        <div th:if="${mensagemSucesso}" class="alert alert-success" role="alert">
-                        <p th:text="${mensagemSucesso}"></p>
-                    </div>
-                        <!-- Verifica se a mensagem de erro existe e exibe -->
-                        <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
-                        <p th:text="${mensagemErro}"></p>
-                        </div>
-                    </div>
+                    
+                    <script th:src="@{/js/usuarioCadastrado.js}"></script>
                 </form>
             </div>
         </body>
