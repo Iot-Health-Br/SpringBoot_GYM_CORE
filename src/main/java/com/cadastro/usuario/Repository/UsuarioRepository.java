@@ -11,5 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     Usuario findByCpfAndSenha(String cpf, String senha);
+    boolean existsByCpf(String cpf);
+    boolean existsByNome(String nome);
 }
 

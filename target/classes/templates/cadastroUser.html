@@ -220,9 +220,13 @@
         </fieldset>
         <button type="submit">Cadastrar</button>
 
-        <div class="form-error">
-            <div th:if="${mensagem} != null" th:text="${mensagem}"></div>
+        <div th:if="${mensagemSucesso != null}" class="success-message">
+            <p th:text="${mensagemSucesso}"></p>
         </div>
+        <div th:if="${error != null}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
     </form>
 </div>
 </body>

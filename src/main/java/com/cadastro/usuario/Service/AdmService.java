@@ -51,8 +51,6 @@ public class AdmService {
         }
     }
 
-
-
     /*
     // Definindo o ModelMapper como um bean no seu contexto do Spring
     @Bean
@@ -72,46 +70,47 @@ public class AdmService {
     }*/
 
 
+    public String saveUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
+        boolean cpfExists = usuarioRepository.existsByCpf(usuarioDTO.getCpf());
+        boolean nomeExists = usuarioRepository.existsByNome(usuarioDTO.getNome());
+        if (cpfExists || nomeExists) {
+            throw new UserAlreadyExists("Usuário já cadastrado!");
+        }
+        else {
+            Usuario user = new Usuario();
+            user.setNome(usuarioDTO.getNome());
+            user.setNascimento(usuarioDTO.getNascimento());
+            user.setGenero(usuarioDTO.getGenero());
+            user.setEstadoCivil(usuarioDTO.getEstadoCivil());
+            user.setEndereco(usuarioDTO.getEndereco());
+            user.setTelefone(usuarioDTO.getTelefone());
+            user.setEmail(usuarioDTO.getEmail());
+            user.setCpf(usuarioDTO.getCpf());
+            user.setSenha(usuarioDTO.getSenha());
+            user.setFoto(usuarioDTO.getFoto());
+            user.setCategoria(usuarioDTO.getCategoria());
 
-
-    public void saveUser(UsuarioDTO usuarioDTO) throws Exception {
-        Usuario user = new Usuario();
-        user.setNome(usuarioDTO.getNome());
-        user.setNascimento(usuarioDTO.getNascimento());
-        user.setGenero(usuarioDTO.getGenero());
-        user.setEstadoCivil(usuarioDTO.getEstadoCivil());
-        user.setEndereco(usuarioDTO.getEndereco());
-        user.setTelefone(usuarioDTO.getTelefone());
-        user.setEmail(usuarioDTO.getEmail());
-        user.setCpf(usuarioDTO.getCpf());
-        user.setSenha(usuarioDTO.getSenha());
-        user.setFoto(usuarioDTO.getFoto());
-        user.setCategoria(usuarioDTO.getCategoria());
-
-        user.setAltura(usuarioDTO.getAltura());
-        user.setPeso(usuarioDTO.getPeso());
-        user.setIMC(usuarioDTO.getIMC());
-        user.setPa(usuarioDTO.getPa());
-        user.setDoencas(usuarioDTO.getDoencas());
-        user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
-        user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
-        user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
-        user.setHitoricoCirugico(usuarioDTO.getHitoricoCirugico());
-        user.setPagamento(usuarioDTO.getPagamento());
-        user.setDataMatricula(usuarioDTO.getDataMatricula());
-        user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
-        user.setPlano(usuarioDTO.getPlano());
-        user.setProfessorResponsavel(usuarioDTO.getProfessorResponsavel());
-        user.setObjetivo(usuarioDTO.getObjetivo());
-        user.setExperiencia(usuarioDTO.getExperiencia());
-        user.setAtividadesFisicas(usuarioDTO.getAtividadesFisicas());
-        user.setNivelCondicionamento(usuarioDTO.getNivelCondicionamento());
-        user.setExpectitativa(usuarioDTO.getExpectitativa());
-        try {
+            user.setAltura(usuarioDTO.getAltura());
+            user.setPeso(usuarioDTO.getPeso());
+            user.setIMC(usuarioDTO.getIMC());
+            user.setPa(usuarioDTO.getPa());
+            user.setDoencas(usuarioDTO.getDoencas());
+            user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
+            user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
+            user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
+            user.setHitoricoCirugico(usuarioDTO.getHitoricoCirugico());
+            user.setPagamento(usuarioDTO.getPagamento());
+            user.setDataMatricula(usuarioDTO.getDataMatricula());
+            user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
+            user.setPlano(usuarioDTO.getPlano());
+            user.setProfessorResponsavel(usuarioDTO.getProfessorResponsavel());
+            user.setObjetivo(usuarioDTO.getObjetivo());
+            user.setExperiencia(usuarioDTO.getExperiencia());
+            user.setAtividadesFisicas(usuarioDTO.getAtividadesFisicas());
+            user.setNivelCondicionamento(usuarioDTO.getNivelCondicionamento());
+            user.setExpectitativa(usuarioDTO.getExpectitativa());
             usuarioRepository.save(user);
-        } catch (Exception e) {
-            throw new Exception("Erro ao salvar o Aluno", e);
+            return "Usuário cadastrado com sucesso!";
         }
     }
-
 }

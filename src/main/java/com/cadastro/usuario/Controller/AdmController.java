@@ -45,6 +45,8 @@ public class AdmController {
         modelAndView.addObject("nome", user.getNome());
         return modelAndView;
     }*/
+
+
     /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
     @GetMapping("/cadastroUser")
     public ModelAndView mostrarFormularioDeCadastro(Model model) {
@@ -53,22 +55,27 @@ public class AdmController {
     }
 
     @PostMapping("/cadastroUser")
-    public String cadastrarUsuario(@ModelAttribute UsuarioDTO usuarioDTO,
-                                   @RequestParam("file") MultipartFile file,
-                                   Model model) {
+    public String cadastrarUsuario(@ModelAttribute UsuarioDTO usuarioDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
         try {
             if (!file.isEmpty()) {
-                usuarioDTO.setFoto(file.getBytes());  // Converting MultipartFile to byte[]
+                usuarioDTO.setFoto(file.getBytes());
             }
-            admService.saveUser(usuarioDTO);
-            model.addAttribute("mensagem", "Cadastrado com sucesso!");
-        } catch (IOException e) {
-            model.addAttribute("mensagem", "Erro ao processar o arquivo!");
-        } catch (Exception e) {
-            model.addAttribute("mensagem", e.getMessage());
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.saveUser(usuarioDTO);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/cadastroUser";
         }
-        return "/cadastroUser";
+        catch (UserAlreadyExists e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("usuarioDTO", usuarioDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "cadastroUser"; // Retorna a view sem redirecionamento
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
 
 
     /////////////////////////Tela de Cadastro Professor///////////////////////////////////
@@ -79,28 +86,26 @@ public class AdmController {
     }
 
     @PostMapping("/cadastroAdm")
-    public ModelAndView handleFileUpload(@ModelAttribute AdmDTO admDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String handleFileUpload(@ModelAttribute AdmDTO admDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
         try {
             if (!file.isEmpty()) {
                 admDTO.setFoto(file.getBytes());
             }
             // Captura a mensagem de retorno do serviço
             String resultado = admService.saveAdm(admDTO);
-            modelAndView.addObject("mensagemSucesso", resultado);
             redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/cadastroAdm";
         }
         catch (UserAlreadyExists e) {
-            modelAndView.addObject("error", e.getMessage());
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("admDTO", admDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "cadastroAdm"; // Retorna a view sem redirecionamento
         }
-
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return modelAndView;
     }
+
 
 
 
