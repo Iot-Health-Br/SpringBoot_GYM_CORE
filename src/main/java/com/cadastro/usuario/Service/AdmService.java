@@ -1,7 +1,9 @@
 package com.cadastro.usuario.Service;
 
 import com.cadastro.usuario.DTO.AdmDTO;
+import com.cadastro.usuario.DTO.TrainingDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
+import com.cadastro.usuario.Exception.TrainingAlreadyExists;
 import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
@@ -122,5 +124,10 @@ public class AdmService {
             usuarioRepository.save(user);
             return "Usuário cadastrado com sucesso!";
         }
+    }
+
+    public String saveTreino(TrainingDTO trainingDTO) throws TrainingAlreadyExists {
+
+        return "Treino cadastrado com sucesso!";
     }
 }

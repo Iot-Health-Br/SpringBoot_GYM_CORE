@@ -30,6 +30,8 @@
     <form class="register-form">
         <fieldset>
             <legend>Minha Matricula</legend>
+            <img th:src="'data:image/jpeg;base64,' + ${foto}" width="75" height="75">
+            <p>Matricula: <span th:text="${id}">Matricula do Usuário</span></p>
             <p>Nome: <span th:text="${nome}">Nome do Usuário</span></p>
             <p>Telefone: <span th:text="${telefone}">Telefone do Usuário</span></p>
         </fieldset>

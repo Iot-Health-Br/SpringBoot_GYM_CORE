@@ -1,15 +1,19 @@
 package com.cadastro.usuario.Controller;
 
 import com.cadastro.usuario.DTO.AdmDTO;
+import com.cadastro.usuario.DTO.TrainingDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
+import com.cadastro.usuario.Exception.TrainingAlreadyExists;
 import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
+import com.cadastro.usuario.Model.LoginUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
 
 import com.cadastro.usuario.Service.AdmService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,17 +38,17 @@ public class AdmController {
 
 
     /////////////////////////Tela Home///////////////////////////////////
-    @GetMapping("/homeAdm")
+    /*@GetMapping("/homeAdm")
     public String home() {
         return "homeAdm"; // Retorna o nome do arquivo homeAdm.html que está em src/main/resources/templates
-    }
-    /*@GetMapping("/homeAdm")
+    }*/
+    @GetMapping("/homeAdm")
     public ModelAndView home(HttpSession session) {
-        LoginUser user = (LoginUser) session.getAttribute("user");
+        LoginUser user = (LoginUser) session.getAttribute("loggedUser");
         ModelAndView modelAndView = new ModelAndView("homeAdm");
         modelAndView.addObject("nome", user.getNome());
         return modelAndView;
-    }*/
+    }
 
 
     /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
@@ -105,6 +109,31 @@ public class AdmController {
             throw new RuntimeException(e);
         }
     }
+
+    /////////////////////////Tela de Cadastro de Treino ///////////////////////////////////
+    @GetMapping("/treinoAluno")
+    public ModelAndView getTreinoAluno(Model model) {
+        model.addAttribute("trainingDTO", new TrainingDTO());
+        return new ModelAndView("/treinoAluno");
+    }
+
+    @PostMapping("/treinoAluno")
+    public String postTreinoAluno(@ModelAttribute TrainingDTO trainingDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
+        try {
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.saveTreino(trainingDTO);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/treinoAluno";
+        }
+        catch (TrainingAlreadyExists e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("trainingDTO", trainingDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "treinoAluno"; // Retorna a view sem redirecionamento
+        }
+
+    }
+
+
 
 
 

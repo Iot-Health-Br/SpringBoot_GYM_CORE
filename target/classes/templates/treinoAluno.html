@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro User</title>
+    <link rel="stylesheet" href="/Css/teste.css">
+</head>
+<body>
+<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/homeAdm" class="navbar-brand">GYM CORE</a>
+        <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item"><a href="/cadastroUser" class="navbar-link active">Cadastrar Aluno</a></li>
+            <li class="navbar-item"><a href="/treinoAluno" class="navbar-link">Cadastrar Treino</a></li>
+            <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
+            <li class="navbar-item"><a href="#" class="navbar-link">Tasks</a></li>
+            <li class="navbar-item"><a href="/teste" class="navbar-link">Tela Teste ADM</a></li>
+        </ul>
+        <div class="navbar-auth">
+            <a href="/login" class="auth-link">Logout</a>
+        </div>
+    </div>
+</nav>
+<div class="form-container">
+    <form class="register-form" th:action="@{/cadastroUser}" th:object="${usuarioDTO}" method="post" enctype="multipart/form-data">
+        <h2>Cadastro de Aluno</h2>
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+
+        </fieldset>
+        <fieldset>
+            <legend>Informações de saúde</legend>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="altura">Altura:</label>
+                    <input type="text" id="altura" th:field="*{altura}" required>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Dados de Pagamento</legend>
+            <div class="form-row">
+
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Objetivos com Academia:</legend>
+            <div class="form-row">
+
+            </div>
+        </fieldset>
+        <button type="submit">Cadastrar</button>
+
+        <div th:if="${mensagemSucesso != null}" class="success-message">
+            <p th:text="${mensagemSucesso}"></p>
+        </div>
+        <div th:if="${error != null}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
