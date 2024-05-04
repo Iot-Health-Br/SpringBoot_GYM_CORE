@@ -3,6 +3,7 @@ package com.cadastro.usuario.Controller;
 import com.cadastro.usuario.DTO.LoginDTO;
 import com.cadastro.usuario.Exception.UserNotFound;
 import com.cadastro.usuario.Service.LoginService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,14 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ModelAndView performLogin(@RequestParam String cpf, @RequestParam String senha) {
+    public ModelAndView performLogin(@RequestParam String cpf, @RequestParam String senha, HttpSession session) {
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setCpf(cpf);
         loginDTO.setSenha(senha);
 
         ModelAndView modelAndView = new ModelAndView();
         try {
-            String viewName = loginService.login(loginDTO);
+            String viewName = loginService.login(loginDTO, session);
             modelAndView.setViewName("redirect:"+viewName);
         } catch (UserNotFound e) {
             modelAndView.setViewName("/login");

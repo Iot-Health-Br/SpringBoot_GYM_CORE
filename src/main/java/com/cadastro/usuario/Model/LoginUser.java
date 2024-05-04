@@ -5,6 +5,11 @@ public class LoginUser {
     private String cpf;
     private String telefone;
 
+    //Construtor
+    public LoginUser(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
+    }
 
     // Getters e Setters
     public String getNome() { return nome; }
