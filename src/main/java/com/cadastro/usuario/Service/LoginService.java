@@ -26,12 +26,20 @@ public class LoginService {
         Adm adm = admRepository.findByCpfAndSenha(loginDTO.getCpf(), loginDTO.getSenha());
         Usuario user = usuarioRepository.findByCpfAndSenha(loginDTO.getCpf(), loginDTO.getSenha());
         if (adm != null) {
-            LoginUser loginAdm = new LoginUser(adm.getNome(), adm.getTelefone());
+            LoginUser loginAdm = new LoginUser(
+                    adm.getId(),
+                    adm.getFoto(),
+                    adm.getNome(),
+                    adm.getTelefone());
             session.setAttribute("loggedUser", loginAdm);
             return "/homeAdm";
         }
         else if (user != null) {
-            LoginUser loginUser = new LoginUser(user.getNome(), user.getTelefone());
+            LoginUser loginUser = new LoginUser(
+                    user.getId(),
+                    user.getFoto(),
+                    user.getNome(),
+                    user.getTelefone());
             session.setAttribute("loggedUser", loginUser);
             return "/homeUser";
         }
