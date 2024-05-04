@@ -28,10 +28,15 @@ public class AdmService {
     }
 
     public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
-        boolean cpfExists = admRepository.existsByCpf(admDTO.getCpf());
-        boolean nomeExists = admRepository.existsByNome(admDTO.getNome());
-        if (cpfExists || nomeExists) {
-            throw new UserAlreadyExists("Usuário já cadastrado!");
+        boolean cpfAdm = admRepository.existsByCpf(admDTO.getCpf());
+        boolean nomeAdm = admRepository.existsByNome(admDTO.getNome());
+        boolean cpfUser = usuarioRepository.existsByCpf(admDTO.getCpf());
+        boolean nomeUser = usuarioRepository.existsByNome(admDTO.getNome());
+        if (cpfAdm || nomeAdm) {
+            throw new UserAlreadyExists("Professor já cadastrado!");
+        }
+        else if (cpfUser || nomeUser ) {
+            throw new UserAlreadyExists("Dados já cadastrado na Tabela Usuário!");
         }
         else {
                 Adm adm = new Adm();
@@ -71,10 +76,15 @@ public class AdmService {
 
 
     public String saveUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
-        boolean cpfExists = usuarioRepository.existsByCpf(usuarioDTO.getCpf());
-        boolean nomeExists = usuarioRepository.existsByNome(usuarioDTO.getNome());
-        if (cpfExists || nomeExists) {
+        boolean cpfUser = usuarioRepository.existsByCpf(usuarioDTO.getCpf());
+        boolean nomeUser = usuarioRepository.existsByNome(usuarioDTO.getNome());
+        boolean cpfAdm = admRepository.existsByCpf(usuarioDTO.getCpf());
+        boolean nomeAdm = admRepository.existsByNome(usuarioDTO.getNome());
+        if (cpfUser || nomeUser) {
             throw new UserAlreadyExists("Usuário já cadastrado!");
+        }
+        else if (cpfAdm || nomeAdm) {
+            throw new UserAlreadyExists("Dados já cadastrado na Tabela Adm!");
         }
         else {
             Usuario user = new Usuario();
