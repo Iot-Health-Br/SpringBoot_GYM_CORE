@@ -17,8 +17,8 @@
             <span class="bar"></span>
         </div>
         <ul class="navbar-menu">
-            <li class="navbar-item"><a href="/cadastroUser" class="navbar-link active">Cadastrar Aluno</a></li>
-            <li class="navbar-item"><a href="/treinoAluno" class="navbar-link">Cadastrar Treino</a></li>
+            <li class="navbar-item"><a href="/cadastroUser" class="navbar-link">Cadastrar Aluno</a></li>
+            <li class="navbar-item"><a href="/treinoAluno" class="navbar-link active">Cadastrar Treino</a></li>
             <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
             <li class="navbar-item"><a href="#" class="navbar-link">Tasks</a></li>
             <li class="navbar-item"><a href="/teste" class="navbar-link">Tela Teste ADM</a></li>
@@ -29,40 +29,369 @@
     </div>
 </nav>
 <div class="form-container">
-    <form class="register-form" th:action="@{/treinoAluno.html}" th:object="${trainingDTO}" method="post" enctype="multipart/form-data">
-        <h2>Treinamento do Aluno</h2>
+    <form class="register-form" th:action="@{/treinoAluno}" th:object="${trainingDTO}" method="post">
+        <h2>Treino do Aluno</h2>
+        <fieldset>
+            <legend>Vinculo do Treino</legend>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="alunosSelect">Aluno:</label>
+                    <select id="alunosSelect" th:field="*{idUser}">
+                        <script src="/Js/listUsers.js"></script></select>
+                </div>
+                <div class="input-group">
+                    <label for="professoresSelect">Professor Responsável:</label>
+                    <select id="professoresSelect" th:field="*{idTeacher}">
+                    <script src="/Js/listTeachers.js"></script></select>
+                </div>
+            </div>
+        </fieldset>
         <fieldset>
             <legend>Treino de Peito</legend>
-
+            <div class="input-group">
+                <label for="diaTreinoPeito">Dia do Treino:</label>
+                <select id="diaTreinoPeito" th:field="*{_DiaPeito}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="1ExercicioPeito">Primeiro Exercicio:</label>
+                    <input type="text" id="1ExercicioPeito" th:field="*{_1ExercicioPeito}" required>
+                </div>
+                <div class="input-group">
+                    <label for="1SeriePeito">Serie Exercicio:</label>
+                    <input type="text" id="1SeriePeito" th:field="*{_1EPserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="1RepeticaoPeito">Repetições:</label>
+                    <input type="text" id="1RepeticaoPeito" th:field="*{_1EPSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="2ExercicioPeito">Segundo Exercicio:</label>
+                    <input type="text" id="2ExercicioPeito" th:field="*{_2ExercicioPeito}" required>
+                </div>
+                <div class="input-group">
+                    <label for="2SeriePeito">Serie Exercicio:</label>
+                    <input type="text" id="2SeriePeito" th:field="*{_2EPserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="2RepeticaoPeito">Repetições:</label>
+                    <input type="text" id="2RepeticaoPeito" th:field="*{_2EPSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="3ExercicioPeito">Terceiro Exercicio:</label>
+                    <input type="text" id="3ExercicioPeito" th:field="*{_3ExercicioPeito}" required>
+                </div>
+                <div class="input-group">
+                    <label for="3SeriePeito">Serie Exercicio:</label>
+                    <input type="text" id="3SeriePeito" th:field="*{_3EPserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="3RepeticaoPeito">Repetições:</label>
+                    <input type="text" id="3RepeticaoPeito" th:field="*{_3EPSrepeticao}" required>
+                </div>
+            </div>
         </fieldset>
         <fieldset>
             <legend>Treino de Tricipes</legend>
+            <div class="input-group">
+                <label for="diaTreinoTricpes">Dia do Treino:</label>
+                <select id="diaTreinoTricpes" th:field="*{_DiaTricipes}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
             <div class="form-row">
-
+                <div class="input-group">
+                    <label for="1ExercicioTricipes">Primeiro Exercicio:</label>
+                    <input type="text" id="1ExercicioTricipes" th:field="*{_1ExercicioTricipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ETserie">Serie Exercicio:</label>
+                    <input type="text" id="_1ETserie" th:field="*{_1ETserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ETSrepeticao">Repetições:</label>
+                    <input type="text" id="_1ETSrepeticao" th:field="*{_1ETSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_2ExercicioTricipes">Segundo Exercicio:</label>
+                    <input type="text" id="_2ExercicioTricipes" th:field="*{_2ExercicioTricipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ETserie">Serie Exercicio:</label>
+                    <input type="text" id="_2ETserie" th:field="*{_2ETserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ETSrepeticao">Repetições:</label>
+                    <input type="text" id="_2ETSrepeticao" th:field="*{_2ETSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_3ExercicioTricipes">Terceiro Exercicio:</label>
+                    <input type="text" id="_3ExercicioTricipes" th:field="*{_3ExercicioTricipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ETserie">Serie Exercicio:</label>
+                    <input type="text" id="_3ETserie" th:field="*{_3ETserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ETSrepeticao">Repetições:</label>
+                    <input type="text" id="_3ETSrepeticao" th:field="*{_3ETSrepeticao}" required>
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Treino de Costa</legend>
+            <div class="input-group">
+                <label for="diaTreinoCosta">Dia do Treino:</label>
+                <select id="diaTreinoCosta" th:field="*{_DiaCosta}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
             <div class="form-row">
-
+                <div class="input-group">
+                    <label for="1ExercicioCosta">Primeiro Exercicio:</label>
+                    <input type="text" id="1ExercicioCosta" th:field="*{_1ExercicioCosta}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ECserie">Serie Exercicio:</label>
+                    <input type="text" id="_1ECserie" th:field="*{_1ECserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ECSrepeticao">Repetições:</label>
+                    <input type="text" id="_1ECSrepeticao" th:field="*{_1ECSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_2ExercicioCosta">Segundo Exercicio:</label>
+                    <input type="text" id="_2ExercicioCosta" th:field="*{_2ExercicioCosta}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ECserie">Serie Exercicio:</label>
+                    <input type="text" id="_2ECserie" th:field="*{_2ECserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ECSrepeticao">Repetições:</label>
+                    <input type="text" id="_2ECSrepeticao" th:field="*{_2ECSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_3ExercicioCosta">Terceiro Exercicio:</label>
+                    <input type="text" id="_3ExercicioCosta" th:field="*{_3ExercicioCosta}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ECserie">Serie Exercicio:</label>
+                    <input type="text" id="_3ECserie" th:field="*{_3ECserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ECSrepeticao">Repetições:</label>
+                    <input type="text" id="_3ECSrepeticao" th:field="*{_3ECSrepeticao}" required>
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Treino de Bicipes</legend>
+            <div class="input-group">
+                <label for="_DiaBicipes">Dia do Treino:</label>
+                <select id="_DiaBicipes" th:field="*{_DiaBicipes}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
             <div class="form-row">
-
+                <div class="input-group">
+                    <label for="_1ExercicioBicipes">Primeiro Exercicio:</label>
+                    <input type="text" id="_1ExercicioBicipes" th:field="*{_1ExercicioBicipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1EBserie">Serie Exercicio:</label>
+                    <input type="text" id="_1EBserie" th:field="*{_1EBserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1EBSrepeticao">Repetições:</label>
+                    <input type="text" id="_1EBSrepeticao" th:field="*{_1EBSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_2ExercicioBicipes">Segundo Exercicio:</label>
+                    <input type="text" id="_2ExercicioBicipes" th:field="*{_2ExercicioBicipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2EBserie">Serie Exercicio:</label>
+                    <input type="text" id="_2EBserie" th:field="*{_2EBserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2EBSrepeticao">Repetições:</label>
+                    <input type="text" id="_2EBSrepeticao" th:field="*{_2EBSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_3ExercicioBicipes">Terceiro Exercicio:</label>
+                    <input type="text" id="_3ExercicioBicipes" th:field="*{_3ExercicioBicipes}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3EBserie">Serie Exercicio:</label>
+                    <input type="text" id="_3EBserie" th:field="*{_3EBserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3EBSrepeticao">Repetições:</label>
+                    <input type="text" id="_3EBSrepeticao" th:field="*{_3EBSrepeticao}" required>
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Treino de Trapezio</legend>
+            <div class="input-group">
+                <label for="_DiaTrapezio">Dia do Treino:</label>
+                <select id="_DiaTrapezio" th:field="*{_DiaTrapezio}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
             <div class="form-row">
-
+                <div class="input-group">
+                    <label for="_1ExercicioTrapezio">Primeiro Exercicio:</label>
+                    <input type="text" id="_1ExercicioTrapezio" th:field="*{_1ExercicioTrapezio}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ETRserie">Serie Exercicio:</label>
+                    <input type="text" id="_1ETRserie" th:field="*{_1ETRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1ETRSrepeticao">Repetições:</label>
+                    <input type="text" id="_1ETRSrepeticao" th:field="*{_1ETRSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_2ExercicioTrapezio">Segundo Exercicio:</label>
+                    <input type="text" id="_2ExercicioTrapezio" th:field="*{_2ExercicioTrapezio}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ETRserie">Serie Exercicio:</label>
+                    <input type="text" id="_2ETRserie" th:field="*{_2ETRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2ETRSrepeticao">Repetições:</label>
+                    <input type="text" id="_2ETRSrepeticao" th:field="*{_2ETRSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_3ExercicioTrapezio">Terceiro Exercicio:</label>
+                    <input type="text" id="_3ExercicioTrapezio" th:field="*{_3ExercicioTrapezio}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ETRserie">Serie Exercicio:</label>
+                    <input type="text" id="_3ETRserie" th:field="*{_3ETRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3ETRSrepeticao">Repetições:</label>
+                    <input type="text" id="_3ETRSrepeticao" th:field="*{_3ETRSrepeticao}" required>
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Treino de Pernas</legend>
+            <div class="input-group">
+                <label for="_DiaPerna">Dia do Treino:</label>
+                <select id="_DiaPerna" th:field="*{_DiaPerna}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
             <div class="form-row">
-
+                <div class="input-group">
+                    <label for="_1ExercicioPerna">Primeiro Exercicio:</label>
+                    <input type="text" id="_1ExercicioPerna" th:field="*{_1ExercicioPerna}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1EPRserie">Serie Exercicio:</label>
+                    <input type="text" id="_1EPRserie" th:field="*{_1EPRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_1EPRSrepeticao">Repetições:</label>
+                    <input type="text" id="_1EPRSrepeticao" th:field="*{_1EPRSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_2ExercicioPerna">Segundo Exercicio:</label>
+                    <input type="text" id="_2ExercicioPerna" th:field="*{_2ExercicioPerna}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2EPRserie">Serie Exercicio:</label>
+                    <input type="text" id="_2EPRserie" th:field="*{_2EPRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_2EPRSrepeticao">Repetições:</label>
+                    <input type="text" id="_2EPRSrepeticao" th:field="*{_2EPRSrepeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="_3ExercicioPerna">Terceiro Exercicio:</label>
+                    <input type="text" id="_3ExercicioPerna" th:field="*{_3ExercicioPerna}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3EPRserie">Serie Exercicio:</label>
+                    <input type="text" id="_3EPRserie" th:field="*{_3EPRserie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="_3EPRSrepeticao">Repetições:</label>
+                    <input type="text" id="_3EPRSrepeticao" th:field="*{_3EPRSrepeticao}" required>
+                </div>
             </div>
         </fieldset>
 

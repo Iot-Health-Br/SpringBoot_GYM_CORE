@@ -4,10 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
 public class TrainingUser {
     @Id
@@ -117,4 +121,7 @@ public class TrainingUser {
     private String _3ExercicioPerna;
     private String _3EPRserie;
     private String _3EPRSrepeticao;
+
+    //Get and Setter
+
 }
