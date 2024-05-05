@@ -134,10 +134,6 @@ public class AdmController {
     }
 
 
-
-
-
-
     /////////////////////////Tela de Teste///////////////////////////////////
     @GetMapping("/teste")
     public String mostrarFormularioDeCadastroTeste(Model model) {
@@ -153,6 +149,21 @@ public class AdmController {
             redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
         }
         return "redirect:/teste"; // Redireciona para a mesma página para evitar reenvio
+    }
+
+
+    /////////////////////////API Lista de Alunos ///////////////////////////////////
+    @RestController
+    @RequestMapping("/api/alunos")
+    public class AlunosController {
+        @Autowired
+        private AdmService admService;
+
+        @GetMapping
+        public ResponseEntity<List<Usuario>> getAlunos() {
+            List<Usuario> alunos = admService.listarTodosOsAlunos();
+            return ResponseEntity.ok().body(alunos);
+        }
     }
     /////////////////////////API Lista de Professor ///////////////////////////////////
     @RestController

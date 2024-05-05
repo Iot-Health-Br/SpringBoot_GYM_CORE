@@ -7,11 +7,8 @@ import java.util.Date;
 
 @Entity
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    /// Dados Pessoais
     private Long id;
     private String nome;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

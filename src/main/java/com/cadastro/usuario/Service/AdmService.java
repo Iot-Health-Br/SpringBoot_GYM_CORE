@@ -25,10 +25,16 @@ public class AdmService {
     //@Autowired
     //private ModelMapper modelMapper;
 
+    //Lista de Alunos
+    public List<Usuario> listarTodosOsAlunos() {
+        return usuarioRepository.findAll();
+    }
+    //Lista de Professores
     public List<Adm> listarTodosOsProfessores() {
         return admRepository.findAll();
     }
 
+    // Verifica se os dados do professor ja está cadastrado, só dps salva.
     public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
         boolean cpfAdm = admRepository.existsByCpf(admDTO.getCpf());
         boolean nomeAdm = admRepository.existsByNome(admDTO.getNome());
@@ -76,7 +82,7 @@ public class AdmService {
         }
     }*/
 
-
+    // Verifica se os dados do Aluno ja está cadastrado, só dps salva.
     public String saveUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
         boolean cpfUser = usuarioRepository.existsByCpf(usuarioDTO.getCpf());
         boolean nomeUser = usuarioRepository.existsByNome(usuarioDTO.getNome());
