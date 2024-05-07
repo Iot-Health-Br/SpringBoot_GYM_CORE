@@ -4,6 +4,7 @@ import com.cadastro.usuario.DTO.AdmDTO;
 import com.cadastro.usuario.DTO.TrainingDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
 import com.cadastro.usuario.Exception.TrainingAlreadyExists;
+import com.cadastro.usuario.Exception.TrainingRegistred;
 import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
@@ -118,14 +119,14 @@ public class AdmController {
     }
 
     @PostMapping("/treinoAluno")
-    public String postTreinoAluno(@ModelAttribute TrainingDTO trainingDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
+    public String postTreinoAluno(@ModelAttribute TrainingDTO trainingDTO, RedirectAttributes redirectAttributes, Model model) {
         try {
             // Captura a mensagem de retorno do serviço
             String resultado = admService.saveTreino(trainingDTO);
             redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
             return "redirect:/treinoAluno";
         }
-        catch (TrainingAlreadyExists e) {
+        catch (TrainingRegistred e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("trainingDTO", trainingDTO); // Adiciona o DTO ao model para manter os dados no formulário
             return "treinoAluno"; // Retorna a view sem redirecionamento
@@ -156,9 +157,6 @@ public class AdmController {
     @RestController
     @RequestMapping("/api/alunos")
     public class AlunosController {
-        @Autowired
-        private AdmService admService;
-
         @GetMapping
         public ResponseEntity<List<Usuario>> getAlunos() {
             List<Usuario> alunos = admService.listarTodosOsAlunos();
@@ -169,9 +167,6 @@ public class AdmController {
     @RestController
     @RequestMapping("/api/professores")
     public class ProfessorController {
-        @Autowired
-        private AdmService admService;
-
         @GetMapping
         public ResponseEntity<List<Adm>> getProfessores() {
             List<Adm> professores = admService.listarTodosOsProfessores();
