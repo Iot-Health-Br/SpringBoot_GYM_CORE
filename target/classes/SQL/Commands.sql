@@ -2,6 +2,8 @@ select * from adm;
 
 select * from usuario;
 
+select * from training_user;
+
 INSERT INTO adm (id,cpf,nome,senha) VALUES
                                       ('4','111.111.111-11','','senha1'),
                                       ('5','222.222.222-22','','senha2'),

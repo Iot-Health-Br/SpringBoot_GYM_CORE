@@ -4,13 +4,18 @@ import com.cadastro.usuario.DTO.AdmDTO;
 import com.cadastro.usuario.DTO.TrainingDTO;
 import com.cadastro.usuario.DTO.UsuarioDTO;
 import com.cadastro.usuario.Exception.TrainingAlreadyExists;
+import com.cadastro.usuario.Exception.TrainingRegistred;
 import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
+import com.cadastro.usuario.Model.TrainingUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
+import com.cadastro.usuario.Repository.TrainingRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +26,12 @@ public class AdmService {
     private AdmRepository admRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private TrainingRepository trainingRepository;
 
-    //@Autowired
-    //private ModelMapper modelMapper;
+    /*
+    @Autowired
+    private ModelMapper modelMapper;*/
 
     //Lista de Alunos
     public List<Usuario> listarTodosOsAlunos() {
@@ -132,8 +140,36 @@ public class AdmService {
         }
     }
 
-    public String saveTreino(TrainingDTO trainingDTO) throws TrainingAlreadyExists {
+    /// Utilizando a bliblioteca Mapper para salvar o objeto
 
-        return "Treino cadastrado com sucesso!";
+    public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
+        if (trainingDTO != null){
+            TrainingUser treino = new TrainingUser(trainingDTO);
+            trainingRepository.save(treino);
+            return "Treino cadastrado com sucesso!";
+        }
+        else {
+            return "Erro ao Salvar o treino !";
+        }
     }
+
+
+    /*
+    // Definindo o ModelMapper como um bean no seu contexto do Spring
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
+        if(trainingDTO != null){
+            TrainingUser treino = modelMapper.map(trainingDTO, TrainingUser.class);
+            trainingRepository.save(treino);
+            return "Treino cadastrado com sucesso!";
+        }
+        else {
+            return "Erro ao Salvar o treino !";
+        }
+
+    }*/
 }

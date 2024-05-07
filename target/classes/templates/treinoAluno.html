@@ -36,16 +36,15 @@
             <div class="form-row">
                 <div class="input-group">
                     <label for="alunosSelect">Aluno:</label>
-                    <select id="alunosSelect" th:field="*{idUser}">
-                        <script src="/Js/listUsers.js"></script></select>
+                    <select id="alunosSelect" th:field="*{idUser}"></select>
                 </div>
                 <div class="input-group">
                     <label for="professoresSelect">Professor Responsável:</label>
-                    <select id="professoresSelect" th:field="*{idTeacher}">
-                    <script src="/Js/listTeachers.js"></script></select>
+                    <select id="professoresSelect" th:field="*{idTeacher}"></select>
                 </div>
             </div>
         </fieldset>
+        <script src="/Js/listUsers.js"></script>
         <fieldset>
             <legend>Treino de Peito</legend>
             <div class="input-group">
