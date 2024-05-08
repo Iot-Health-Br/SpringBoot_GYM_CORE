@@ -1,5 +1,8 @@
 package com.cadastro.usuario.DTO;
 
+
+import jakarta.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,6 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class TrainingDTO {
+    @Id
     private Long id;
     private Long idUser;
     private Long idTeacher;
@@ -18,100 +22,100 @@ public class TrainingDTO {
     private Date vencimentoTreino;
 
     /////////////////////// Exercicios de Costa ////////////////////////////////////////
-    private String _DiaCosta;
-    private String _1ExercicioCosta;
-    private String _1ECserie;
-    private String _1ECSrepeticao;
+    private String DiaCosta;
+    private String Exercicio_Costa;
+    private String Costa_Serie;
+    private String Costa_Repeticao;
     // Segundo
-    private String _2ExercicioCosta;
-    private String _2ECserie;
-    private String _2ECSrepeticao;
+    private String Exercicio_Costa2;
+    private String Costa_Serie2;
+    private String Costa_Repeticao2;
     // Terceiro
-    private String _3ExercicioCosta;
-    private String _3ECserie;
-    private String _3ECSrepeticao;
+    private String Exercicio_Costa3;
+    private String Costa_Serie3;
+    private String Costa_Repeticao3;
 
     /////////////////////// Exercicio de Peito ////////////////////////////////////////
-    private String _DiaPeito;
-    private String _1ExercicioPeito;
-    private String _1EPserie;
-    private String _1EPSrepeticao;
+    private String DiaPeito;
+    private String Exercicio_Peito;
+    private String Peito_Serie;
+    private String Peito_Repeticao;
     // Segundo
-    private String _2ExercicioPeito;
-    private String _2EPserie;
-    private String _2EPSrepeticao;
+    private String Exercicio_Peito2;
+    private String Peito_Serie2;
+    private String Peito_Repeticao2;
     // Terceiro
-    private String _3ExercicioPeito;
-    private String _3EPserie;
-    private String _3EPSrepeticao;
+    private String Exercicio_Peito3;
+    private String Peito_Serie3;
+    private String Peito_Repeticao3;
 
     /////////////////////// Exercicio de Bicipes ////////////////////////////////////////
-    private String _DiaBicipes;
-    private String _1ExercicioBicipes;
-    private String _1EBserie;
-    private String _1EBSrepeticao;
+    private String DiaBicipes;
+    private String Exercicio_Bicipes;
+    private String Bicipes_Serie;
+    private String Bicipes_Repeticao;
     // Segundo
-    private String _2ExercicioBicipes;
-    private String _2EBserie;
-    private String _2EBSrepeticao;
+    private String Exercicio_Bicipes2;
+    private String Bicipes_Serie2;
+    private String Bicipes_Repeticao2;
     // Terceiro
-    private String _3ExercicioBicipes;
-    private String _3EBserie;
-    private String _3EBSrepeticao;
+    private String Exercicio_Bicipes3;
+    private String Bicipes_Serie3;
+    private String Bicipes_Repeticao3;
 
     /////////////////////// Exercicio de Tricipes ////////////////////////////////////////
-    private String _DiaTricipes;
-    private String _1ExercicioTricipes;
-    private String _1ETserie;
-    private String _1ETSrepeticao;
+    private String DiaTricipes;
+    private String Exercicio_Tricipes;
+    private String Tricipes_Serie;
+    private String Tricipes_Repeticao;
     // Segundo
-    private String _2ExercicioTricipes;
-    private String _2ETserie;
-    private String _2ETSrepeticao;
+    private String Exercicio_Tricipes2;
+    private String Tricipes_Serie2;
+    private String Tricipes_Repeticao2;
     // Terceiro
-    private String _3ExercicioTricipes;
-    private String _3ETserie;
-    private String _3ETSrepeticao;
+    private String Exercicio_Tricipes3;
+    private String Tricipes_Serie3;
+    private String Tricipes_Repeticao3;
 
     /////////////////////// Exercicio de Ombro ////////////////////////////////////////
-    private String _DiaOmbro;
-    private String _1ExercicioOmbro;
-    private String _1EOserie;
-    private String _1EOSrepeticao;
+    private String DiaOmbro;
+    private String Exercicio_Ombro;
+    private String Ombro_Serie;
+    private String Ombro_Repeticao;
     // Segundo
-    private String _2ExercicioOmbro;
-    private String _2EOserie;
-    private String _2EOSrepeticao;
+    private String Exercicio_Ombro2;
+    private String Ombro_Serie2;
+    private String Ombro_Repeticao2;
     // Terceiro
-    private String _3ExercicioOmbro;
-    private String _3EOserie;
-    private String _3EOSrepeticao;
+    private String Exercicio_Ombro3;
+    private String Ombro_Serie3;
+    private String Ombro_Repeticao3;
 
     /////////////////////// Exercicio de Trapezio ////////////////////////////////////////
-    private String _DiaTrapezio;
-    private String _1ExercicioTrapezio;
-    private String _1ETRserie;
-    private String _1ETRSrepeticao;
+    private String DiaTrapezio;
+    private String Exercicio_Trapezio;
+    private String Trapezio_Serie;
+    private String Trapezio_Repeticao;
     // Segundo
-    private String _2ExercicioTrapezio;
-    private String _2ETRserie;
-    private String _2ETRSrepeticao;
+    private String Exercicio_Trapezio2;
+    private String Trapezio_Serie2;
+    private String Trapezio_Repeticao2;
     // Terceiro
-    private String _3ExercicioTrapezio;
-    private String _3ETRserie;
-    private String _3ETRSrepeticao;
+    private String Exercicio_Trapezio3;
+    private String Trapezio_Serie3;
+    private String Trapezio_Repeticao3;
 
     /////////////////////// Exercicio de Perna ////////////////////////////////////////
-    private String _DiaPerna;
-    private String _1ExercicioPerna;
-    private String _1EPRserie;
-    private String _1EPRSrepeticao;
+    private String DiaPerna;
+    private String Exercicio_Perna;
+    private String Perna_Serie;
+    private String Perna_Repeticao;
     // Segundo
-    private String _2ExercicioPerna;
-    private String _2EPRserie;
-    private String _2EPRSrepeticao;
+    private String Exercicio_Perna2;
+    private String Perna_Serie2;
+    private String Perna_Repeticao2;
     // Terceiro
-    private String _3ExercicioPerna;
-    private String _3EPRserie;
-    private String _3EPRSrepeticao;
+    private String Exercicio_Perna3;
+    private String Perna_Serie3;
+    private String Perna_Repeticao3;
 }
