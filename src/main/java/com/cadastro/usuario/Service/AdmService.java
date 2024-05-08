@@ -144,7 +144,89 @@ public class AdmService {
 
     public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
         if (trainingDTO != null){
-            TrainingUser treino = new TrainingUser(trainingDTO);
+            TrainingUser treino = new TrainingUser();
+            treino.setIdUser(trainingDTO.getIdUser());
+            treino.setIdTeacher(trainingDTO.getIdTeacher());
+            treino.setDataTreino(trainingDTO.getDataTreino());
+            treino.setVencimentoTreino(trainingDTO.getVencimentoTreino());
+
+            // Atribuições para exercícios de costa
+            treino.setExercicio_Costa(trainingDTO.getExercicio_Costa());
+            treino.setCosta_Serie(trainingDTO.getCosta_Serie());
+            treino.setCosta_Repeticao(trainingDTO.getCosta_Repeticao());
+            treino.setExercicio_Costa2(trainingDTO.getExercicio_Costa2());
+            treino.setCosta_Serie2(trainingDTO.getCosta_Serie2());
+            treino.setCosta_Repeticao2(trainingDTO.getCosta_Repeticao2());
+            treino.setExercicio_Costa3(trainingDTO.getExercicio_Costa3());
+            treino.setCosta_Serie3(trainingDTO.getCosta_Serie3());
+            treino.setCosta_Repeticao3(trainingDTO.getCosta_Repeticao3());
+
+            // Atribuições para exercícios de peito
+            treino.setExercicio_Peito(trainingDTO.getExercicio_Peito());
+            treino.setPeito_Serie(trainingDTO.getPeito_Serie());
+            treino.setPeito_Repeticao(trainingDTO.getPeito_Repeticao());
+            treino.setExercicio_Peito2(trainingDTO.getExercicio_Peito2());
+            treino.setPeito_Serie2(trainingDTO.getPeito_Serie2());
+            treino.setPeito_Repeticao2(trainingDTO.getPeito_Repeticao2());
+            treino.setExercicio_Peito3(trainingDTO.getExercicio_Peito3());
+            treino.setPeito_Serie3(trainingDTO.getPeito_Serie3());
+            treino.setPeito_Repeticao3(trainingDTO.getPeito_Repeticao3());
+
+            // Atribuições para exercícios de bíceps
+            treino.setExercicio_Bicipes(trainingDTO.getExercicio_Bicipes());
+            treino.setBicipes_Serie(trainingDTO.getBicipes_Serie());
+            treino.setBicipes_Repeticao(trainingDTO.getBicipes_Repeticao());
+            treino.setExercicio_Bicipes2(trainingDTO.getExercicio_Bicipes2());
+            treino.setBicipes_Serie2(trainingDTO.getBicipes_Serie2());
+            treino.setBicipes_Repeticao2(trainingDTO.getBicipes_Repeticao2());
+            treino.setExercicio_Bicipes3(trainingDTO.getExercicio_Bicipes3());
+            treino.setBicipes_Serie3(trainingDTO.getBicipes_Serie3());
+            treino.setBicipes_Repeticao3(trainingDTO.getBicipes_Repeticao3());
+
+            // Atribuições para exercícios de tríceps
+            treino.setExercicio_Tricipes(trainingDTO.getExercicio_Tricipes());
+            treino.setTricipes_Serie(trainingDTO.getTricipes_Serie());
+            treino.setTricipes_Repeticao(trainingDTO.getTricipes_Repeticao());
+            treino.setExercicio_Tricipes2(trainingDTO.getExercicio_Tricipes2());
+            treino.setTricipes_Serie2(trainingDTO.getTricipes_Serie2());
+            treino.setTricipes_Repeticao2(trainingDTO.getTricipes_Repeticao2());
+            treino.setExercicio_Tricipes3(trainingDTO.getExercicio_Tricipes3());
+            treino.setTricipes_Serie3(trainingDTO.getTricipes_Serie3());
+            treino.setTricipes_Repeticao3(trainingDTO.getTricipes_Repeticao3());
+
+            // Atribuições para exercícios de ombro
+            treino.setExercicio_Ombro(trainingDTO.getExercicio_Ombro());
+            treino.setOmbro_Serie(trainingDTO.getOmbro_Serie());
+            treino.setOmbro_Repeticao(trainingDTO.getOmbro_Repeticao());
+            treino.setExercicio_Ombro2(trainingDTO.getExercicio_Ombro2());
+            treino.setOmbro_Serie2(trainingDTO.getOmbro_Serie2());
+            treino.setOmbro_Repeticao2(trainingDTO.getOmbro_Repeticao2());
+            treino.setExercicio_Ombro3(trainingDTO.getExercicio_Ombro3());
+            treino.setOmbro_Serie3(trainingDTO.getOmbro_Serie3());
+            treino.setOmbro_Repeticao3(trainingDTO.getOmbro_Repeticao3());
+
+            // Atribuições para exercícios de trapézio
+            treino.setExercicio_Trapezio(trainingDTO.getExercicio_Trapezio());
+            treino.setTrapezio_Serie(trainingDTO.getTrapezio_Serie());
+            treino.setTrapezio_Repeticao(trainingDTO.getTrapezio_Repeticao());
+            treino.setExercicio_Trapezio2(trainingDTO.getExercicio_Trapezio2());
+            treino.setTrapezio_Serie2(trainingDTO.getTrapezio_Serie2());
+            treino.setTrapezio_Repeticao2(trainingDTO.getTrapezio_Repeticao2());
+            treino.setExercicio_Trapezio3(trainingDTO.getExercicio_Trapezio3());
+            treino.setTrapezio_Serie3(trainingDTO.getTrapezio_Serie3());
+            treino.setTrapezio_Repeticao3(trainingDTO.getTrapezio_Repeticao3());
+
+            // Atribuições para exercícios de perna
+            treino.setExercicio_Perna(trainingDTO.getExercicio_Perna());
+            treino.setPerna_Serie(trainingDTO.getPerna_Serie());
+            treino.setPerna_Repeticao(trainingDTO.getPerna_Repeticao());
+            treino.setExercicio_Perna2(trainingDTO.getExercicio_Perna2());
+            treino.setPerna_Serie2(trainingDTO.getPerna_Serie2());
+            treino.setPerna_Repeticao2(trainingDTO.getPerna_Repeticao2());
+            treino.setExercicio_Perna3(trainingDTO.getExercicio_Perna3());
+            treino.setPerna_Serie3(trainingDTO.getPerna_Serie3());
+            treino.setPerna_Repeticao3(trainingDTO.getPerna_Repeticao3());
+
             trainingRepository.save(treino);
             return "Treino cadastrado com sucesso!";
         }
