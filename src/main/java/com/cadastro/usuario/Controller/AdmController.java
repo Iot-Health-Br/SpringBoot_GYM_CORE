@@ -9,6 +9,7 @@ import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.LoginUser;
+import com.cadastro.usuario.Model.TrainingUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
@@ -171,6 +172,16 @@ public class AdmController {
         public ResponseEntity<List<Adm>> getProfessores() {
             List<Adm> professores = admService.listarTodosOsProfessores();
             return ResponseEntity.ok().body(professores);
+        }
+    }
+    /////////////////////////API Lista de Treinos ///////////////////////////////////
+    @RestController
+    @RequestMapping("/api/treinosAtualizar")
+    public class TreinosController {
+        @GetMapping
+        public ResponseEntity<List<TrainingUser>> getTreino() {
+            List<TrainingUser> treino = admService.listarTodosOsTreinos();
+            return ResponseEntity.ok().body(treino);
         }
     }
 }

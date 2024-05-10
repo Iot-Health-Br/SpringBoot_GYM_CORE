@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,6 +34,11 @@ public class AdmService {
     @Autowired
     private ModelMapper modelMapper;*/
 
+    //Lista de treino
+    public List<TrainingUser> listarTodosOsTreinos() {
+        LocalDate dataLimite = LocalDate.now().minusDays(30);
+        return trainingRepository.findTreinosVencidos(dataLimite);
+    }
     //Lista de Alunos
     public List<Usuario> listarTodosOsAlunos() {
         return usuarioRepository.findAll();
