@@ -175,14 +175,15 @@ public class AdmController {
         }
     }
     /////////////////////////API Lista de Treinos ///////////////////////////////////
-    @RestController
-    @RequestMapping("/api/treinosAtualizar")
+    @Controller
     public class TreinosController {
-        @GetMapping
-        public ResponseEntity<List<TrainingUser>> getTreino() {
-            List<TrainingUser> treino = admService.listarTodosOsTreinos();
-            return ResponseEntity.ok().body(treino);
+        @GetMapping("/treinoAtualizar")
+        public String showExpiredTrainings(Model model) {
+            List<TrainingUser> expiredTrainings = admService.listarTodosOsTreinos();
+            model.addAttribute("treinoTabela", expiredTrainings);
+            return "treinoAtualizar"; // Nome do arquivo HTML
         }
     }
+
 }
 

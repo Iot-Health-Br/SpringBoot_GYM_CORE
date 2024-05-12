@@ -30,15 +30,11 @@ public class AdmService {
     @Autowired
     private TrainingRepository trainingRepository;
 
-    /*
-    @Autowired
-    private ModelMapper modelMapper;*/
-
-    //Lista de treino
     public List<TrainingUser> listarTodosOsTreinos() {
-        LocalDate dataLimite = LocalDate.now().minusDays(30);
-        return trainingRepository.findTreinosVencidos(dataLimite);
+        LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
+        return trainingRepository.findExpiredTrainings(thirtyDaysAgo);
     }
+
     //Lista de Alunos
     public List<Usuario> listarTodosOsAlunos() {
         return usuarioRepository.findAll();

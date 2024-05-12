@@ -174,12 +174,34 @@ button:hover {
 }
 
 
-
+/*Select do formulário*/
 select {
     width: 120px; /* Ajusta a largura dos campos */
     height: 30px; /* Ajusta a altura dos campos */
     padding: 5px; /* Adiciona um pouco de espaço interno para torná-los mais altos */
     font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
 }
+
+/*Tabela de Treino*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f5f5f5;
+}
+.selected {
+    background-color: #ddd !important;
+}
+
 
 
