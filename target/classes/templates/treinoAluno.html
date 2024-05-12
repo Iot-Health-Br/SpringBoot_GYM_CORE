@@ -20,7 +20,7 @@
             <li class="navbar-item"><a href="/cadastroUser" class="navbar-link">Cadastrar Aluno</a></li>
             <li class="navbar-item"><a href="/treinoAluno" class="navbar-link active">Cadastrar Treino</a></li>
             <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
-            <li class="navbar-item"><a href="#" class="navbar-link">Tasks</a></li>
+            <li class="navbar-item"><a href="/api/treinosAtualizar" class="navbar-link">Atualizar Treinos</a></li>
             <li class="navbar-item"><a href="/teste" class="navbar-link">Tela Teste ADM</a></li>
         </ul>
         <div class="navbar-auth">
@@ -35,12 +35,20 @@
             <legend>Vinculo do Treino</legend>
             <div class="form-row">
                 <div class="input-group">
+                    <label for="dataNascimento">Data do Treino:</label>
+                    <input type="date" id="dataNascimento" th:field="*{dataTreino}" required>
+                </div>
+                <div class="input-group">
                     <label for="alunosSelect">Aluno:</label>
                     <select id="alunosSelect" th:field="*{idUser}"></select>
                 </div>
                 <div class="input-group">
                     <label for="professoresSelect">Professor Responsável:</label>
                     <select id="professoresSelect" th:field="*{idTeacher}"></select>
+                </div>
+                <div class="input-group">
+                    <label for="vencimentoTreino">Validade do Treino:</label>
+                    <input type="date" id="vencimentoTreino" th:field="*{vencimentoTreino}" required>
                 </div>
             </div>
         </fieldset>
@@ -278,7 +286,65 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend>Treino de Trapezio</legend>
+            <legend>Treino de Ombros</legend>
+            <div class="input-group">
+                <label for="diaOmbro">Dia do Treino:</label>
+                <select id="diaOmbro" th:field="*{diaOmbro}">
+                    <option value="">Selecione</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Quarta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="exercicio_Ombro">Primeiro Exercicio:</label>
+                    <input type="text" id="exercicio_Ombro" th:field="*{exercicio_Ombro}" required>
+                </div>
+                <div class="input-group">
+                    <label for="">Serie Exercicio:</label>
+                    <input type="text" id="" th:field="*{ombro_Serie}" required>
+                </div>
+                <div class="input-group">
+                    <label for="ombro_Repeticao">Repetições:</label>
+                    <input type="text" id="ombro_Repeticao" th:field="*{ombro_Repeticao}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="exercicio_Ombro2">Segundo Exercicio:</label>
+                    <input type="text" id="exercicio_Ombro2" th:field="*{exercicio_Ombro2}" required>
+                </div>
+                <div class="input-group">
+                    <label for="ombro_Serie2">Serie Exercicio:</label>
+                    <input type="text" id="ombro_Serie2" th:field="*{ombro_Serie2}" required>
+                </div>
+                <div class="input-group">
+                    <label for="ombro_Repeticao2">Repetições:</label>
+                    <input type="text" id="ombro_Repeticao2" th:field="*{ombro_Repeticao2}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="exercicio_Ombro3">Terceiro Exercicio:</label>
+                    <input type="text" id="exercicio_Ombro3" th:field="*{exercicio_Ombro3}" required>
+                </div>
+                <div class="input-group">
+                    <label for="ombro_Serie3">Serie Exercicio:</label>
+                    <input type="text" id="ombro_Serie3" th:field="*{ombro_Serie3}" required>
+                </div>
+                <div class="input-group">
+                    <label for="ombro_Repeticao3">Repetições:</label>
+                    <input type="text" id="ombro_Repeticao3" th:field="*{ombro_Repeticao3}" required>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Treino de Trapézio</legend>
             <div class="input-group">
                 <label for="_DiaTrapezio">Dia do Treino:</label>
                 <select id="_DiaTrapezio" th:field="*{diaTrapezio}">
@@ -393,7 +459,6 @@
                 </div>
             </div>
         </fieldset>
-
 
         <button type="submit">Cadastrar</button>
 

@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -21,11 +22,15 @@ public class TrainingUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idUser;
+    private String nameUser;
     private Long idTeacher;
+    private String nameTeacher;
     @DateTimeFormat
-    private Date dataTreino;
+    //private Date dataTreino;
+    private LocalDate dataTreino;
     @DateTimeFormat
-    private Date vencimentoTreino;
+    //private Date vencimentoTreino;
+    private LocalDate vencimentoTreino;
 
     /////////////////////// Exercicios de Costa ////////////////////////////////////////
     private String DiaCosta;

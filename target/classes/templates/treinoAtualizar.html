@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Treino</title>
+    <link rel="stylesheet" href="/Css/treinoAtualizar.css">
+</head>
+<body>
+<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/homeAdm" class="navbar-brand">GYM CORE</a>
+        <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item"><a href="/cadastroUser" class="navbar-link">Cadastrar Aluno</a></li>
+            <li class="navbar-item"><a href="/treinoAluno" class="navbar-link">Cadastrar Treino</a></li>
+            <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link">Cadastrar Professor</a></li>
+            <li class="navbar-item"><a href="/treinoAtualizar" class="navbar-link  active">Atualizar Treinos</a></li>
+            <li class="navbar-item"><a href="/teste" class="navbar-link">Tela Teste ADM</a></li>
+        </ul>
+        <div class="navbar-auth">
+            <a href="/login" class="auth-link">Logout</a>
+        </div>
+    </div>
+</nav>
+<div class="form-container">
+    <form class="register-form" th:action="@{/treinoAtualizar}">
+        <h2>Treinos para Atualizar</h2>
+        <fieldset>
+            <legend>Atualizar Treinos</legend>
+            <div class="form-row">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ID Usuário</th>
+                            <th>ID Professor</th>
+                            <th>Data do Treino</th>
+                            <th>Vencimento do Treino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="treino : ${treinoTabela}" th:data-id="${treino.id}">
+                            <td th:text="${treino.id}"></td>
+                            <td th:text="${treino.idUser}"></td>
+                            <td th:text="${treino.idTeacher}"></td>
+                            <td th:text="${treino.dataTreino}"></td>
+                            <td th:text="${treino.dataTreino.plusDays(30)}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script src="/static/Js/tabelaTreino.js"></script>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

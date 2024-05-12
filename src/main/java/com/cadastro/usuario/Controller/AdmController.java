@@ -9,6 +9,7 @@ import com.cadastro.usuario.Exception.UserRegistred;
 import com.cadastro.usuario.Exception.UserAlreadyExists;
 import com.cadastro.usuario.Model.Adm;
 import com.cadastro.usuario.Model.LoginUser;
+import com.cadastro.usuario.Model.TrainingUser;
 import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
@@ -173,5 +174,16 @@ public class AdmController {
             return ResponseEntity.ok().body(professores);
         }
     }
+    /////////////////////////API Lista de Treinos ///////////////////////////////////
+    @Controller
+    public class TreinosController {
+        @GetMapping("/treinoAtualizar")
+        public String showExpiredTrainings(Model model) {
+            List<TrainingUser> expiredTrainings = admService.listarTodosOsTreinos();
+            model.addAttribute("treinoTabela", expiredTrainings);
+            return "treinoAtualizar"; // Nome do arquivo HTML
+        }
+    }
+
 }
 
