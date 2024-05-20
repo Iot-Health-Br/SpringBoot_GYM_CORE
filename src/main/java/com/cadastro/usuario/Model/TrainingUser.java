@@ -31,6 +31,7 @@ public class TrainingUser {
     @DateTimeFormat
     //private Date vencimentoTreino;
     private LocalDate vencimentoTreino;
+    private Boolean status;
 
     /////////////////////// Exercicios de Costa ////////////////////////////////////////
     private String DiaCosta;
