@@ -113,10 +113,20 @@ public class AdmController {
     }
 
     /////////////////////////Tela de Cadastro de Treino ///////////////////////////////////
+/*
     @GetMapping("/treinoAluno")
     public ModelAndView getTreinoAluno(Model model) {
         model.addAttribute("trainingDTO", new TrainingDTO());
         return new ModelAndView("/treinoAluno");
+    }*/
+
+
+    @GetMapping("/treinoAluno")
+    public String showForm(Model model) {
+        TrainingDTO trainingDTO = new TrainingDTO();
+        trainingDTO.setStatus(true); // Setando o valor padrão como true
+        model.addAttribute("trainingDTO", trainingDTO);
+        return "treinoAluno"; // nome da página HTML
     }
 
     @PostMapping("/treinoAluno")

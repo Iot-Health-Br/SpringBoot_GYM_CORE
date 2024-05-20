@@ -25,6 +25,7 @@ public class TrainingDTO {
     @DateTimeFormat
     private LocalDate vencimentoTreino;
     //private Date vencimentoTreino;
+    private Boolean status;
 
     /////////////////////// Exercicios de Costa ////////////////////////////////////////
     private String DiaCosta;

@@ -146,13 +146,27 @@ public class AdmService {
 
     public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
         if (trainingDTO != null){
+
+            List<TrainingUser> lastTrainings = trainingRepository.findLastTrainingByUserId(trainingDTO.getIdUser());
+            if (!lastTrainings.isEmpty()) {
+                TrainingUser lastTraining = lastTrainings.get(0);
+                System.out.println("Último treino encontrado: " + lastTraining); // Log
+                if (lastTraining.getStatus()) {
+                    lastTraining.setStatus(false);
+                    trainingRepository.save(lastTraining); // Salva o treino anterior com status falso
+                    System.out.println("Status do último treino alterado para falso."); // Log
+                }
+            }
+
             TrainingUser treino = new TrainingUser();
             treino.setIdUser(trainingDTO.getIdUser());
             treino.setIdTeacher(trainingDTO.getIdTeacher());
             treino.setDataTreino(trainingDTO.getDataTreino());
             treino.setVencimentoTreino(trainingDTO.getVencimentoTreino());
+            treino.setStatus(trainingDTO.getStatus());
 
             // Atribuições para exercícios de costa
+            treino.setDiaCosta(trainingDTO.getDiaCosta());
             treino.setExercicio_Costa(trainingDTO.getExercicio_Costa());
             treino.setCosta_Serie(trainingDTO.getCosta_Serie());
             treino.setCosta_Repeticao(trainingDTO.getCosta_Repeticao());
@@ -164,6 +178,7 @@ public class AdmService {
             treino.setCosta_Repeticao3(trainingDTO.getCosta_Repeticao3());
 
             // Atribuições para exercícios de peito
+            treino.setDiaPeito(trainingDTO.getDiaPeito());
             treino.setExercicio_Peito(trainingDTO.getExercicio_Peito());
             treino.setPeito_Serie(trainingDTO.getPeito_Serie());
             treino.setPeito_Repeticao(trainingDTO.getPeito_Repeticao());
@@ -175,6 +190,7 @@ public class AdmService {
             treino.setPeito_Repeticao3(trainingDTO.getPeito_Repeticao3());
 
             // Atribuições para exercícios de bíceps
+            treino.setDiaBicipes(trainingDTO.getDiaBicipes());
             treino.setExercicio_Bicipes(trainingDTO.getExercicio_Bicipes());
             treino.setBicipes_Serie(trainingDTO.getBicipes_Serie());
             treino.setBicipes_Repeticao(trainingDTO.getBicipes_Repeticao());
@@ -186,6 +202,7 @@ public class AdmService {
             treino.setBicipes_Repeticao3(trainingDTO.getBicipes_Repeticao3());
 
             // Atribuições para exercícios de tríceps
+            treino.setDiaTricipes(trainingDTO.getDiaTricipes());
             treino.setExercicio_Tricipes(trainingDTO.getExercicio_Tricipes());
             treino.setTricipes_Serie(trainingDTO.getTricipes_Serie());
             treino.setTricipes_Repeticao(trainingDTO.getTricipes_Repeticao());
@@ -197,6 +214,7 @@ public class AdmService {
             treino.setTricipes_Repeticao3(trainingDTO.getTricipes_Repeticao3());
 
             // Atribuições para exercícios de ombro
+            treino.setDiaOmbro(trainingDTO.getDiaOmbro());
             treino.setExercicio_Ombro(trainingDTO.getExercicio_Ombro());
             treino.setOmbro_Serie(trainingDTO.getOmbro_Serie());
             treino.setOmbro_Repeticao(trainingDTO.getOmbro_Repeticao());
@@ -208,6 +226,7 @@ public class AdmService {
             treino.setOmbro_Repeticao3(trainingDTO.getOmbro_Repeticao3());
 
             // Atribuições para exercícios de trapézio
+            treino.setDiaTrapezio(trainingDTO.getDiaTrapezio());
             treino.setExercicio_Trapezio(trainingDTO.getExercicio_Trapezio());
             treino.setTrapezio_Serie(trainingDTO.getTrapezio_Serie());
             treino.setTrapezio_Repeticao(trainingDTO.getTrapezio_Repeticao());
@@ -219,6 +238,7 @@ public class AdmService {
             treino.setTrapezio_Repeticao3(trainingDTO.getTrapezio_Repeticao3());
 
             // Atribuições para exercícios de perna
+            treino.setDiaPerna(trainingDTO.getDiaPerna());
             treino.setExercicio_Perna(trainingDTO.getExercicio_Perna());
             treino.setPerna_Serie(trainingDTO.getPerna_Serie());
             treino.setPerna_Repeticao(trainingDTO.getPerna_Repeticao());
