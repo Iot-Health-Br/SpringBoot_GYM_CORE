@@ -160,7 +160,11 @@ public class AdmService {
 
             TrainingUser treino = new TrainingUser();
             treino.setIdUser(trainingDTO.getIdUser());
+            treino.setNameUser(trainingDTO.getNameUser());
+
             treino.setIdTeacher(trainingDTO.getIdTeacher());
+            treino.setNameTeacher(trainingDTO.getNameTeacher());
+
             treino.setDataTreino(trainingDTO.getDataTreino());
             treino.setVencimentoTreino(trainingDTO.getVencimentoTreino());
             treino.setStatus(trainingDTO.getStatus());

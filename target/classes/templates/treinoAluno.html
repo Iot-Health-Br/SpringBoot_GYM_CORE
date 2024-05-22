@@ -20,7 +20,7 @@
             <li class="navbar-item"><a href="/cadastroUser" class="navbar-link">Cadastrar Aluno</a></li>
             <li class="navbar-item"><a href="/treinoAluno" class="navbar-link active">Cadastrar Treino</a></li>
             <li class="navbar-item"><a href="/cadastroAdm" class="navbar-link ">Cadastrar Professor</a></li>
-            <li class="navbar-item"><a href="/api/treinosAtualizar" class="navbar-link">Atualizar Treinos</a></li>
+            <li class="navbar-item"><a href="/treinoAtualizar" class="navbar-link">Atualizar Treinos</a></li>
             <li class="navbar-item"><a href="/teste" class="navbar-link">Tela Teste ADM</a></li>
         </ul>
         <div class="navbar-auth">
@@ -41,10 +41,12 @@
                 <div class="input-group">
                     <label for="alunosSelect">Aluno:</label>
                     <select id="alunosSelect" th:field="*{idUser}"></select>
+                    <input type="hidden" id="nomeAluno" th:field="*{nameUser}">
                 </div>
                 <div class="input-group">
                     <label for="professoresSelect">Professor Responsável:</label>
                     <select id="professoresSelect" th:field="*{idTeacher}"></select>
+                    <input type="hidden" id="nomeTeacher" th:field="*{nameTeacher}">
                 </div>
                 <div class="input-group">
                     <label for="vencimentoTreino">Validade do Treino:</label>

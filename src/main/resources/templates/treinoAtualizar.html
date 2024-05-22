@@ -37,9 +37,9 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>ID Usuário</th>
-                            <th>ID Professor</th>
+                            <th>ID Treino</th>
+                            <th>Nome do Usuário</th>
+                            <th>Nome do Professor</th>
                             <th>Data do Treino</th>
                             <th>Vencimento do Treino</th>
                         </tr>
@@ -47,8 +47,8 @@
                     <tbody>
                         <tr th:each="treino : ${treinoTabela}" th:data-id="${treino.id}">
                             <td th:text="${treino.id}"></td>
-                            <td th:text="${treino.idUser}"></td>
-                            <td th:text="${treino.idTeacher}"></td>
+                            <td th:text="${treino.nameUser}"></td>
+                            <td th:text="${treino.nameTeacher}"></td>
                             <td th:text="${treino.dataTreino}"></td>
                             <td th:text="${treino.dataTreino.plusDays(30)}"></td>
                         </tr>
