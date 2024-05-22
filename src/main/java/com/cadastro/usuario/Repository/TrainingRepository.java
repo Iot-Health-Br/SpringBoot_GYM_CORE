@@ -12,8 +12,10 @@ import java.util.List;
 
 @Repository
 public interface TrainingRepository extends JpaRepository<TrainingUser, Long> {
-    @Query("SELECT t FROM TrainingUser t WHERE t.dataTreino < :limitDate")
+
+    @Query("SELECT t FROM TrainingUser t WHERE t.dataTreino < :limitDate AND t.status = true")
     List<TrainingUser> findExpiredTrainings(LocalDate limitDate);
+
 
     @Query("SELECT t FROM TrainingUser t WHERE t.idUser = :idUser ORDER BY t.dataTreino DESC")
     List<TrainingUser> findLastTrainingByUserId(@Param("idUser") Long idUser);
