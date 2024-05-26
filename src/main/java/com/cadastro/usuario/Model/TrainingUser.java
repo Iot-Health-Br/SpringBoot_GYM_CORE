@@ -1,6 +1,5 @@
 package com.cadastro.usuario.Model;
 
-import com.cadastro.usuario.DTO.TrainingDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +10,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Getter

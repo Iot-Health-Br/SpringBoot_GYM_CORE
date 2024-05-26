@@ -1,7 +1,5 @@
 package com.cadastro.usuario.DTO;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import org.springframework.format.annotation.DateTimeFormat;

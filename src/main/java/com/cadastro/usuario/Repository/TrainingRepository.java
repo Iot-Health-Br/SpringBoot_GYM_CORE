@@ -20,5 +20,8 @@ public interface TrainingRepository extends JpaRepository<TrainingUser, Long> {
     @Query("SELECT t FROM TrainingUser t WHERE t.idUser = :idUser ORDER BY t.dataTreino DESC")
     List<TrainingUser> findLastTrainingByUserId(@Param("idUser") Long idUser);
 
+    @Query("SELECT t FROM TrainingUser t WHERE t.idUser = :idUser AND t.status = :status")
+    TrainingUser findByUserIdAndStatus(@Param("idUser") Long userId, @Param("status") Boolean status);
+
 }
 

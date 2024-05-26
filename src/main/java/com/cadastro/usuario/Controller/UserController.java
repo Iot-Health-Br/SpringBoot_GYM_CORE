@@ -1,7 +1,14 @@
 package com.cadastro.usuario.Controller;
 
 import com.cadastro.usuario.Model.LoginUser;
+import com.cadastro.usuario.Model.TrainingUser;
+import com.cadastro.usuario.Service.UserService;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,7 +17,8 @@ import java.util.Base64;
 
 @Controller
 public class UserController {
-
+    @Autowired
+    UserService userService;
 
     /*@GetMapping("/homeUser")
     public String home() {
@@ -41,4 +49,21 @@ public class UserController {
         return modelAndView;
     }
 
+    /////////////////////////Tela Meus Treinos///////////////////////////////////
+    @GetMapping("/meusTreinos/pdf")
+    public void gerarPDF(HttpServletResponse response, HttpSession session) throws Exception {
+        LoginUser user = (LoginUser) session.getAttribute("loggedUser");
+        Long idUser = user.getId();
+        TrainingUser treinoUser = userService.getTreinoUserByUserId(idUser);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=treinoUser.pdf"); // Mude de 'inline' para 'attachment'
+
+        Document document = new Document();
+        PdfWriter.getInstance(document, response.getOutputStream());
+        document.open();
+        document.add(new Paragraph("Nome User: " + treinoUser.getNameUser()));
+        document.add(new Paragraph("Nome Teacher: " + treinoUser.getNameTeacher()));
+        document.close();
+    }
 }
