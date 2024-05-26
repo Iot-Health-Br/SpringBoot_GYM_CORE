@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro User</title>
+    <link rel="stylesheet" href="/Css/meusTreinos.css">
 </head>
 <body>
-$END$
+<img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/homeAdm" class="navbar-brand">GYM CORE</a>
+        <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item"><a href="#" class="navbar-link ">Meus Treinos</a></li>
+            <li class="navbar-item"><a href="/matriculaUser" class="navbar-link">Minha Matricula</a></li>
+            <li class="navbar-item"><a href="#" class="navbar-link ">Metas da Semana</a></li>
+        </ul>
+        <div class="navbar-auth">
+            <p>Olá, <span th:text="${nome}">Nome do Usuário</span></p>
+            <a href="/login" class="auth-link">Logout</a>
+        </div>
+    </div>
+</nav>
+<div class="form-container">
+    <form class="register-form">
+
+    </form>
+</div>
 </body>
 </html>

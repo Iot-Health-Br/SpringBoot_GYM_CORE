@@ -1,12 +1,9 @@
 package com.cadastro.usuario.Controller;
 
-import ch.qos.logback.core.model.Model;
 import com.cadastro.usuario.Model.LoginUser;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Base64;

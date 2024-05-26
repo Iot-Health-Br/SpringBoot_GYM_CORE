@@ -1,2 +1,4 @@
-package com.cadastro.usuario.Service;public class UserService {
+package com.cadastro.usuario.Service;
+
+public class UserService {
 }
