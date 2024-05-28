@@ -75,6 +75,7 @@ Nós usamos [GIT](https://git-scm.com/) para controle de versão. Para as versõ
 ## ✒️ Autores
 
 * **Desenvolvedor** - *Trabalho Inicial* / *Documentação* - [Igor Leonor Macedo](https://github.com/Iot-Health-Br)
+* **Desenvolvedor** - *Trabalho Inicial* / *Documentação* - [Lucas Ribeiro Marques](https://github.com/LucasRibeiroMArques)
 * **Desenvolvedor** - *Trabalho Inicial* / *Documentação* - [Luidy Tavares](https://github.com/LuidyTT)
 * **Desenvolvedor** - *Trabalho Inicial* / *Documentação* - [Pedro Augusto](https://github.com/PedroAugusto-sys)
 
