@@ -4,14 +4,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class UsuarioDTO {
     @Id
     private Long id;
     private String nome;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date nascimento;
+    @DateTimeFormat
+    private LocalDate nascimento;
     private String genero;
     private String estadoCivil;
     private String endereco;
@@ -35,11 +35,12 @@ public class UsuarioDTO {
     private String hitoricoCirugico;
 
     ///Pagamento
-    private String pagamento;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dataMatricula;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date vencimentoMatricula;
+    private boolean pagamento;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat
+    private LocalDate dataMatricula;
+    @DateTimeFormat
+    private LocalDate vencimentoMatricula;
     private String plano;
     private String professorResponsavel;
 
@@ -66,11 +67,11 @@ public class UsuarioDTO {
         this.nome = nome;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -218,27 +219,27 @@ public class UsuarioDTO {
         this.hitoricoCirugico = hitoricoCirugico;
     }
 
-    public String getPagamento() {
+    public boolean getPagamento() {
         return pagamento;
     }
 
-    public void setPagamento(String pagamento) {
+    public void setPagamento(boolean pagamento) {
         this.pagamento = pagamento;
     }
 
-    public Date getDataMatricula() {
+    public LocalDate getDataMatricula() {
         return dataMatricula;
     }
 
-    public void setDataMatricula(Date dataMatricula) {
+    public void setDataMatricula(LocalDate dataMatricula) {
         this.dataMatricula = dataMatricula;
     }
 
-    public Date getVencimentoMatricula() {
+    public LocalDate getVencimentoMatricula() {
         return vencimentoMatricula;
     }
 
-    public void setVencimentoMatricula(Date vencimentoMatricula) {
+    public void setVencimentoMatricula(LocalDate vencimentoMatricula) {
         this.vencimentoMatricula = vencimentoMatricula;
     }
 
