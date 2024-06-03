@@ -2,9 +2,7 @@ package com.cadastro.usuario.Service;
 
 import com.cadastro.usuario.Model.TrainingUser;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -13,7 +11,9 @@ import java.io.IOException;
 public class PdfGenerator {
     public void generateTrainingPdf(HttpServletResponse response, TrainingUser trainingUser) throws DocumentException, IOException {
         Document document = new Document();
-        PdfWriter.getInstance(document, response.getOutputStream());
+        PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
+        BackgroundImageEvent backgroundImageEvent = new BackgroundImageEvent();
+        writer.setPageEvent(backgroundImageEvent);
         document.open();
 
         addLogoAndAddress(document);
@@ -27,6 +27,39 @@ public class PdfGenerator {
         addExercicioPernas(document, trainingUser);
 
         document.close();
+    }
+
+    class BackgroundImageEvent extends PdfPageEventHelper {
+        private final float opacity = 0.3f; // Defina a transparência aqui
+        //./Logo Imagens/Logo Principal.jpeg
+        private final String imagePath = "./Logo Imagens/GYMCOREBG.png"; // Caminho para a imagem de fundo
+        private final float imageWidth = 500; // Largura da imagem
+        private final float imageHeight = 300; // Altura da imagem
+        private final float posX = 150; // Posição X da imagem
+        private final float posY = 100; // Posição Y da imagem
+
+        @Override
+        public void onEndPage(PdfWriter writer, Document document) {
+            addBackgroundImage(writer, document);
+        }
+
+        private void addBackgroundImage(PdfWriter writer, Document document) {
+            try {
+                Image img = Image.getInstance(imagePath);
+                img.setAbsolutePosition(posX, document.getPageSize().getHeight() - posY - imageHeight); // Ajuste para posição Y
+                img.scaleAbsolute(imageWidth, imageHeight); // Corrigido para usar imageHeight
+                PdfGState gState = new PdfGState();
+                gState.setFillOpacity(opacity); // Define a opacidade
+
+                PdfContentByte canvas = writer.getDirectContentUnder();
+                canvas.saveState(); // Salva o estado atual
+                canvas.setGState(gState); // Aplica a transparência
+                canvas.addImage(img);
+                canvas.restoreState(); // Restaura o estado anterior
+            } catch (DocumentException | IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void addLogoAndAddress(Document document) throws DocumentException, IOException {

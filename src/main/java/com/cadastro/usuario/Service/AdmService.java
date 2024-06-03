@@ -123,7 +123,7 @@ public class AdmService {
             user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
             user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
             user.setHitoricoCirugico(usuarioDTO.getHitoricoCirugico());
-            user.setPagamento(usuarioDTO.getPagamento());
+            user.setPagamento(true);
             user.setDataMatricula(usuarioDTO.getDataMatricula());
             user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
             user.setPlano(usuarioDTO.getPlano());
