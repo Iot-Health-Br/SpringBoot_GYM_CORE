@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByCpfAndSenha(String cpf, String senha);
     boolean existsByCpf(String cpf);
     boolean existsByNome(String nome);

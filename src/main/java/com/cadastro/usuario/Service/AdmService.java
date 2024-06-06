@@ -40,6 +40,14 @@ public class AdmService {
         return admRepository.findAll();
     }
 
+    public Usuario findUsuarioById(Long id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
+    public Usuario saveUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
     // Verifica se os dados do professor ja está cadastrado, só dps salva.
     public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
         boolean cpfAdm = admRepository.existsByCpf(admDTO.getCpf());

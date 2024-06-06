@@ -11,7 +11,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate nascimento;
     private String genero;
     private String estadoCivil;
@@ -37,9 +37,9 @@ public class Usuario {
 
     ///Pagamento
     private boolean pagamento;
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataMatricula;
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate vencimentoMatricula;
     private String plano;
     private String professorResponsavel;
