@@ -29,7 +29,7 @@ public class Usuario {
     private Double peso;
     private Double IMC;
     private String pa;
-    private String doencas;
+    private String sick;
     private String limitacaoFisica;
     private String restricoesAlimentar;
     private String usoMedicamento;
@@ -179,12 +179,12 @@ public class Usuario {
         this.pa = pa;
     }
 
-    public String getDoencas() {
-        return doencas;
+    public String getSick() {
+        return sick;
     }
 
-    public void setDoencas(String doencas) {
-        this.doencas = doencas;
+    public void setSick(String sick) {
+        this.sick = sick;
     }
 
     public String getLimitacaoFisica() {

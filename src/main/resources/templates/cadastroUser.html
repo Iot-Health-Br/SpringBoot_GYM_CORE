@@ -135,7 +135,7 @@
             <div class="form-row">
                 <div class="input-group">
                     <label for="doenca">Doenças de Base:</label>
-                    <input type="text" id="doenca" th:field="*{doencas}" required>
+                    <input type="text" id="doenca" th:field="*{sick}" required>
                 </div>
                 <div class="input-group">
                     <label for="limitacao">Limitação Fisica:</label>
@@ -199,9 +199,9 @@
                     <label for="condicionamento">Condicionamento:</label>
                     <select id="condicionamento" th:field="*{nivelCondicionamento}">
                         <option value="">Selecione</option>
-                        <option value="sedentario">Sedentário</option>
-                        <option value="atleta">Atleta</option>
-                        <option value="ativo">Ativo</option>
+                        <option value="Sedentário">Sedentário</option>
+                        <option value="Atleta">Atleta</option>
+                        <option value="Atleta">Ativo</option>
                     </select>
                 </div>
             </div>

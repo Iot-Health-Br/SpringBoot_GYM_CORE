@@ -29,7 +29,7 @@
     </div>
 </nav>
 <div class="form-container">
-    <form class="register-form" th:action="@{/cadastroUser}" th:object="${usuarioDTO}" method="post" enctype="multipart/form-data">
+    <form class="register-form" th:action="@{/manterAluno}" th:object="${usuarioDTO}" method="post" enctype="multipart/form-data">
         <h2>Manter de Aluno</h2>
         <fieldset>
             <legend>Selecione o Aluno</legend>
@@ -53,8 +53,8 @@
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="nome">Nome completo:</label>
-                    <input type="text" id="nome" th:field="*{nome}" required>
+                    <label for="name">Nome completo:</label>
+                    <input type="text" id="name" th:field="*{nome}" required>
                 </div>
                 <div class="input-group">
                     <label for="cpf">CPF:</label>
@@ -63,12 +63,12 @@
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="dataNascimento">Data de nascimento:</label>
-                    <input type="date" id="dataNascimento" th:field="*{nascimento}" required>
+                    <label for="birthday">Data de nascimento:</label>
+                    <input type="date" id="birthday" th:field="*{nascimento}" required>
                 </div>
                 <div class="input-group">
-                    <label for="genero">Gênero:</label>
-                    <select id="genero" th:field="*{genero}">
+                    <label for="gender">Gênero:</label>
+                    <select id="gender" th:field="*{genero}">
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
@@ -76,8 +76,8 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="estadoCivil">Estado Civil:</label>
-                    <select id="estadoCivil" th:field="*{estadoCivil}">
+                    <label for="civilState">Estado Civil:</label>
+                    <select id="civilState" th:field="*{estadoCivil}">
                         <option value="">Selecione</option>
                         <option value="Solteiro">Solteiro</option>
                         <option value="Casado">Casado</option>
@@ -85,22 +85,15 @@
                         <option value="Viúvo">Viúvo</option>
                     </select>
                 </div>
-                <div class="input-group">
-                    <label for="categoria">Categoria de Acesso:</label>
-                    <select id="categoria" th:field="*{categoria}">
-                        <option value="">Selecione</option>
-                        <option value="Aluno">Aluno</option>
-                    </select>
-                </div>
             </div>
             <div class="input-group">
-                <label for="endereco">Endereço completo:</label>
-                <input type="text" id="endereco" th:field="*{endereco}" required>
+                <label for="address">Endereço completo:</label>
+                <input type="text" id="address" th:field="*{endereco}" required>
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" th:field="*{telefone}" required>
+                    <label for="phone">Telefone:</label>
+                    <input type="tel" id="phone" th:field="*{telefone}" required>
                 </div>
                 <div class="input-group">
                     <label for="email">E-mail:</label>
@@ -133,8 +126,8 @@
                     <input type="text" id="peso" th:field="*{peso}" required>
                 </div>
                 <div class="input-group">
-                    <label for="imc">IMC:</label>
-                    <input type="text" id="imc" th:field="*{IMC}" required>
+                    <label for="massIndex">IMC:</label>
+                    <input type="text" id="massIndex" th:field="*{IMC}" required>
                 </div>
                 <div class="input-group">
                     <label for="pa">Pressão Arterial:</label>
@@ -143,43 +136,39 @@
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="doenca">Doenças de Base:</label>
-                    <input type="text" id="doenca" th:field="*{doencas}" required>
+                    <label for="sick">Doenças de Base:</label>
+                    <input type="text" id="sick" th:field="*{sick}" required>
                 </div>
                 <div class="input-group">
-                    <label for="limitacao">Limitação Fisica:</label>
-                    <input type="text" id="limitacao" th:field="*{limitacaoFisica}" required>
+                    <label for="limitation">Limitação Fisica:</label>
+                    <input type="text" id="limitation" th:field="*{limitacaoFisica}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="restricao">Restrição Alimentar:</label>
-                    <input type="text" id="restricao" th:field="*{restricoesAlimentar}" required>
+                    <label for="restriction">Restrição Alimentar:</label>
+                    <input type="text" id="restriction" th:field="*{restricoesAlimentar}" required>
                 </div>
                 <div class="input-group">
-                    <label for="medicamento">Uso do Medicamento:</label>
-                    <input type="text" id="medicamento" th:field="*{usoMedicamento}" required>
+                    <label for="medicine">Uso do Medicamento:</label>
+                    <input type="text" id="medicine" th:field="*{usoMedicamento}" required>
                 </div>
             </div>
             <div class="input-group">
-                <label for="cirurgia">Histórico Cirurgico:</label>
-                <input type="text" id="cirurgia" th:field="*{hitoricoCirugico}" required>
+                <label for="surgicalHistory">Histórico Cirurgico:</label>
+                <input type="text" id="surgicalHistory" th:field="*{hitoricoCirugico}" required>
             </div>
         </fieldset>
         <fieldset>
             <legend>Dados de Pagamento</legend>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="dataMatricula">Data de Matricula:</label>
-                    <input type="date" id="dataMatricula" th:field="*{dataMatricula}" required>
+                    <label for="payDate">Vencimento de Matricula:</label>
+                    <input type="date" id="payDate" th:field="*{vencimentoMatricula}" required>
                 </div>
                 <div class="input-group">
-                    <label for="vencMatricula">Vencimento de Matricula:</label>
-                    <input type="date" id="vencMatricula" th:field="*{vencimentoMatricula}" required>
-                </div>
-                <div class="input-group">
-                    <label for="plano">Plano Escolido:</label>
-                    <select id="plano" th:field="*{plano}">
+                    <label for="plan">Plano Escolido:</label>
+                    <select id="plan" th:field="*{plano}">
                         <option value="">Selecione</option>
                         <option value="diamond">Diamond</option>
                         <option value="gold">Gold</option>
@@ -197,34 +186,34 @@
             <legend>Objetivos com Academia:</legend>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="experiencia">Já Treinou ?:</label>
-                    <select id="experiencia" th:field="*{experiencia}">
+                    <label for="experience">Já Treinou ?:</label>
+                    <select id="experience" th:field="*{experiencia}">
                         <option value="">Selecione</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="condicionamento">Condicionamento:</label>
-                    <select id="condicionamento" th:field="*{nivelCondicionamento}">
+                    <label for="conditioningLevel">Condicionamento:</label>
+                    <select id="conditioningLevel" th:field="*{nivelCondicionamento}">
                         <option value="">Selecione</option>
-                        <option value="sedentario">Sedentário</option>
-                        <option value="atleta">Atleta</option>
-                        <option value="ativo">Ativo</option>
+                        <option value="Sedentário">Sedentário</option>
+                        <option value="Atleta">Atleta</option>
+                        <option value="Ativo">Ativo</option>
                     </select>
                 </div>
             </div>
             <div class="input-group">
-                <label for="objetivo">Objetivo:</label>
-                <input type="text" id="objetivo" th:field="*{objetivo}" required>
+                <label for="objective">Objetivo:</label>
+                <input type="text" id="objective" th:field="*{objetivo}" required>
             </div>
             <div class="input-group">
-                <label for="atividades">Atividades Fisica:</label>
-                <input type="text" id="atividades" th:field="*{atividadesFisicas}" required>
+                <label for="activities">Atividades Fisica:</label>
+                <input type="text" id="activities" th:field="*{atividadesFisicas}" required>
             </div>
             <div class="input-group">
-                <label for="expectitativa">Expectativa:</label>
-                <input type="text" id="expectitativa" th:field="*{expectitativa}" required>
+                <label for="expectation">Expectativa:</label>
+                <input type="text" id="expectation" th:field="*{expectitativa}" required>
             </div>
         </fieldset>
         <button type="submit">Cadastrar</button>

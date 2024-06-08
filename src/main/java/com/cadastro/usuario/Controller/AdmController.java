@@ -73,7 +73,36 @@ public class AdmController {
     }
 
     /////////////////////////-- Manter Usuário --///////////////////////////////////
+    @GetMapping("/manterAluno")
+    public ModelAndView FormularioDeCadastroUser(Model model) {
+        model.addAttribute("usuarioDTO", new UsuarioDTO());
+        return new ModelAndView("/manterAluno");
+    }
+    @PostMapping("/manterAluno")
+    public String manterUsuario(@ModelAttribute UsuarioDTO usuarioDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
+        try {
+            if (!file.isEmpty()) {
+                usuarioDTO.setFoto(file.getBytes());
+            }
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.saveUser(usuarioDTO);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/manterAluno";
+        }
+        catch (UserAlreadyExists e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("usuarioDTO", usuarioDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "manterAluno"; // Retorna a view sem redirecionamento
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+
+
+
+    /*
     @GetMapping("/manterAluno")
     public ModelAndView FormularioDeCadastroUser(Model model) {
         model.addAttribute("usuarioDTO", new UsuarioDTO());
@@ -129,7 +158,7 @@ public class AdmController {
         dto.setPeso(usuario.getPeso());
         dto.setIMC(usuario.getIMC());
         dto.setPa(usuario.getPa());
-        dto.setDoencas(usuario.getDoencas());
+        dto.setSick(usuario.getSick());
         dto.setLimitacaoFisica(usuario.getLimitacaoFisica());
         dto.setRestricoesAlimentar(usuario.getRestricoesAlimentar());
         dto.setUsoMedicamento(usuario.getUsoMedicamento());
@@ -149,12 +178,7 @@ public class AdmController {
         // Complete o mapeamento com todos os campos necessários
         return dto;
     }
-
-    @PostMapping("/manterAluno/update")
-    public Usuario updateUsuario(@RequestBody Usuario usuario) {
-        return admService.saveUsuario(usuario);
-    }
-
+*/
     /////////////////////////Tela de Cadastro Professor///////////////////////////////////
 
     @GetMapping("/cadastroAdm")
@@ -230,6 +254,11 @@ public class AdmController {
         public ResponseEntity<List<Usuario>> getAlunos() {
             List<Usuario> alunos = admService.listarTodosOsAlunos();
             return ResponseEntity.ok().body(alunos);
+        }
+        @GetMapping("/{id}")
+        public ResponseEntity<Usuario> getAlunoById(@PathVariable Long id) {
+            Usuario usuario = admService.findUsuarioById(id);
+            return ResponseEntity.ok().body(usuario);
         }
     }
     /////////////////////////*** API Lista de Professor ***///////////////////////////////////

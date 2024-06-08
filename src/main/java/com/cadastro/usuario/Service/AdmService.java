@@ -44,9 +44,6 @@ public class AdmService {
         return usuarioRepository.findById(id).orElse(null);
     }
 
-    public Usuario saveUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
 
     // Verifica se os dados do professor ja está cadastrado, só dps salva.
     public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
@@ -126,7 +123,7 @@ public class AdmService {
             user.setPeso(usuarioDTO.getPeso());
             user.setIMC(usuarioDTO.getIMC());
             user.setPa(usuarioDTO.getPa());
-            user.setDoencas(usuarioDTO.getDoencas());
+            user.setSick(usuarioDTO.getSick());
             user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
             user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
             user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
