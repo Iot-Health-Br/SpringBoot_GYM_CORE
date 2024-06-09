@@ -32,7 +32,7 @@ public class UsuarioDTO {
     private String limitacaoFisica;
     private String restricoesAlimentar;
     private String usoMedicamento;
-    private String hitoricoCirugico;
+    private String surgicalHistory;
 
     ///Pagamento
     private boolean pagamento;
@@ -211,12 +211,12 @@ public class UsuarioDTO {
         this.usoMedicamento = usoMedicamento;
     }
 
-    public String getHitoricoCirugico() {
-        return hitoricoCirugico;
+    public String getSurgicalHistory() {
+        return surgicalHistory;
     }
 
-    public void setHitoricoCirugico(String hitoricoCirugico) {
-        this.hitoricoCirugico = hitoricoCirugico;
+    public void setSurgicalHistory(String surgicalHistory) {
+        this.surgicalHistory = surgicalHistory;
     }
 
     public boolean getPagamento() {

@@ -33,10 +33,16 @@
         <h2>Manter de Aluno</h2>
         <fieldset>
             <legend>Selecione o Aluno</legend>
-            <div class="input-group">
-                <label for="alunosSelect">Aluno:</label>
-                <select id="alunosSelect" th:field="*{id}"></select>
-                <input type="hidden" id="nomeAluno" th:field="*{nome}">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="alunosSelect">Aluno:</label>
+                    <select id="alunosSelect" th:field="*{id}"></select>
+                    <input type="hidden" id="nomeAluno" th:field="*{nome}">
+                </div>
+                <div class="input-group">
+                    <label for="professoresSelect">Professor Responsável:</label>
+                    <select id="professoresSelect" th:field="*{professorResponsavel}"></select>
+                </div>
             </div>
         </fieldset>
         <script th:src="@{/js/infoUser.js}"></script>
@@ -87,7 +93,7 @@
                 </div>
             </div>
             <div class="input-group">
-                <label for="address">Endereço completo:</label>
+                <label for="address">Endereço:</label>
                 <input type="text" id="address" th:field="*{endereco}" required>
             </div>
             <div class="form-row">
@@ -119,15 +125,16 @@
             <div class="form-row">
                 <div class="input-group">
                     <label for="altura">Altura:</label>
-                    <input type="text" id="altura" th:field="*{altura}" required>
+                    <input type="text" id="altura" required oninput="calcularIMC()" th:field="*{altura}">
                 </div>
                 <div class="input-group">
                     <label for="peso">Peso:</label>
-                    <input type="text" id="peso" th:field="*{peso}" required>
+                    <input type="text" id="peso" required oninput="calcularIMC()" th:field="*{peso}">
                 </div>
+                <script th:src="@{/js/imcUsuario.js}"></script>
                 <div class="input-group">
-                    <label for="massIndex">IMC:</label>
-                    <input type="text" id="massIndex" th:field="*{IMC}" required>
+                    <label for="massIndex">Massa Corporal:</label>
+                    <input type="text" id="massIndex" th:field="*{IMC}" readonly>
                 </div>
                 <div class="input-group">
                     <label for="pa">Pressão Arterial:</label>
@@ -136,11 +143,11 @@
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="sick">Doenças de Base:</label>
-                    <input type="text" id="sick" th:field="*{sick}" required>
+                    <label for="doença">Alguma Doença:</label>
+                    <input type="text" id="doença" th:field="*{sick}" required>
                 </div>
                 <div class="input-group">
-                    <label for="limitation">Limitação Fisica:</label>
+                    <label for="limitation">Limitação Física:</label>
                     <input type="text" id="limitation" th:field="*{limitacaoFisica}" required>
                 </div>
             </div>
@@ -150,13 +157,13 @@
                     <input type="text" id="restriction" th:field="*{restricoesAlimentar}" required>
                 </div>
                 <div class="input-group">
-                    <label for="medicine">Uso do Medicamento:</label>
+                    <label for="medicine">Uso de Medicamento:</label>
                     <input type="text" id="medicine" th:field="*{usoMedicamento}" required>
                 </div>
             </div>
             <div class="input-group">
-                <label for="surgicalHistory">Histórico Cirurgico:</label>
-                <input type="text" id="surgicalHistory" th:field="*{hitoricoCirugico}" required>
+                <label for="surgicalHistory">Histórico Cirúrgico:</label>
+                <input type="text" id="surgicalHistory" th:field="*{surgicalHistory}" required>
             </div>
         </fieldset>
         <fieldset>
@@ -175,11 +182,6 @@
                         <option value="silver">Silver</option>
                     </select>
                 </div>
-            </div>
-            <div class="input-group">
-                <label for="professoresSelect">Professor Responsável:</label>
-                <select id="professoresSelect" th:field="*{professorResponsavel}">
-                    <script src="/Js/listUsers.js"></script></select>
             </div>
         </fieldset>
         <fieldset>
@@ -208,7 +210,7 @@
                 <input type="text" id="objective" th:field="*{objetivo}" required>
             </div>
             <div class="input-group">
-                <label for="activities">Atividades Fisica:</label>
+                <label for="activities">Atividades Física:</label>
                 <input type="text" id="activities" th:field="*{atividadesFisicas}" required>
             </div>
             <div class="input-group">

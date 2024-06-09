@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             document.getElementById('altura').value = aluno.altura;
                             document.getElementById('peso').value = aluno.peso;
-                            document.getElementById('massIndex').value = aluno.IMC;
+                            //document.getElementById('massIndex').value = aluno.IMC;
                             document.getElementById('pa').value = aluno.pa;
-                            document.getElementById('sick').value = aluno.doencas;
+                            document.getElementById('doença').value = aluno.sick;
                             document.getElementById('limitation').value = aluno.limitacaoFisica;
                             document.getElementById('restriction').value = aluno.restricoesAlimentar;
                             document.getElementById('medicine').value = aluno.usoMedicamento;
-                            document.getElementById('surgicalHistory').value = aluno.historicoCirurgico;
+                            document.getElementById('surgicalHistory').value = aluno.surgicalHistory;
 
 
                             document.getElementById('payDate').value = aluno.vencimentoMatricula;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             document.getElementById('conditioningLevel').value = aluno.nivelCondicionamento;
                             document.getElementById('objective').value = aluno.objetivo;
                             document.getElementById('activities').value = aluno.atividadesFisicas;
-                            document.getElementById('expectation').value = aluno.expectativa;
+                            document.getElementById('expectation').value = aluno.expectitativa;
                         })
                         .catch(error => console.error('Erro ao carregar os dados do aluno:', error));
                 } else {
@@ -54,4 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         })
         .catch(error => console.error('Erro ao carregar os alunos:', error));
+
+
+    fetch('/api/professores')
+        .then(response => response.json())
+        .then(data => {
+            const selectProfessores = document.getElementById('professoresSelect');
+            const nomeTeacherField = document.getElementById('nomeTeacher');
+            selectProfessores.add(new Option("", ""));
+            data.forEach(professor => {
+                const option = new Option(professor.nome, professor.id);
+                selectProfessores.add(option);
+            });
+            // Adicionar um listener para atualizar o campo nomeTeacher quando o professor for selecionado
+            selectProfessores.addEventListener('change', function() {
+                const selectedOption = selectProfessores.options[selectProfessores.selectedIndex];
+                nomeTeacherField.value = selectedOption.text;
+            });
+        })
+        .catch(error => console.error('Erro ao carregar os professores:', error));
 });

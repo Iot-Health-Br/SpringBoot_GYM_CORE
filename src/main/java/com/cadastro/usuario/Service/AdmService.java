@@ -75,24 +75,6 @@ public class AdmService {
         }
     }
 
-    /*
-    // Definindo o ModelMapper como um bean no seu contexto do Spring
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
-    public void saveUser(UsuarioDTO usuarioDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        Usuario user = modelMapper.map(usuarioDTO, Usuario.class);
-
-        try {
-            usuarioRepository.save(user);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar o Aluno", e);
-        }
-    }*/
-
     // Verifica se os dados do Aluno ja está cadastrado, só dps salva.
     public String saveUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
         boolean cpfUser = usuarioRepository.existsByCpf(usuarioDTO.getCpf());
@@ -127,7 +109,7 @@ public class AdmService {
             user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
             user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
             user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
-            user.setHitoricoCirugico(usuarioDTO.getHitoricoCirugico());
+            user.setSurgicalHistory(usuarioDTO.getSurgicalHistory());
             user.setPagamento(true);
             user.setDataMatricula(usuarioDTO.getDataMatricula());
             user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
