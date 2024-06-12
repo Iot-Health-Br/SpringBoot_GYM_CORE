@@ -45,6 +45,7 @@ public class AdmController {
         modelAndView.addObject("nome", user.getNome());
         return modelAndView;
     }
+
     /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
     @GetMapping("/cadastroUser")
     public ModelAndView mostrarFormularioDeCadastro(Model model) {
@@ -86,7 +87,7 @@ public class AdmController {
                 usuarioDTO.setFoto(file.getBytes());
             }
             // Captura a mensagem de retorno do serviço
-            String resultado = admService.saveUser(usuarioDTO);
+            String resultado = admService.updateUser(usuarioDTO);
             redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
             return "redirect:/manterAluno";
         }
@@ -149,23 +150,6 @@ public class AdmController {
             return "treinoAluno"; // Retorna a view sem redirecionamento
         }
     }
-    /////////////////////////Tela de Teste///////////////////////////////////
-    @GetMapping("/teste")
-    public String mostrarFormularioDeCadastroTeste(Model model) {
-        model.addAttribute("user", new Usuario());
-        return "teste";
-    }
-    @PostMapping("/teste")
-    public String cadastrarTeste(Usuario user, RedirectAttributes redirectAttributes) {
-        try {
-            usuarioRepository.save(user); // Tenta salvar os dados no banco
-            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
-        }
-        return "redirect:/teste"; // Redireciona para a mesma página para evitar reenvio
-    }
-
 
     /////////////////////////*** API Lista de Alunos ***///////////////////////////////////
     @RestController

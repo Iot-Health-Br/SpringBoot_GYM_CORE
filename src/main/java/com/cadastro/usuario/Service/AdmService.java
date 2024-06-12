@@ -11,11 +11,13 @@ import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.TrainingRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdmService {
@@ -125,7 +127,54 @@ public class AdmService {
         }
     }
 
-    /// Utilizando a bliblioteca Mapper para salvar o objeto
+    // Verifica se o Aluno ja está cadastrado, só dps faz o update.
+    @Transactional
+    public String updateUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
+        // Verifica se o usuário existe pelo CPF
+        Optional<Usuario> existingUserOptional = usuarioRepository.findByCpf(usuarioDTO.getCpf());
+
+        if (existingUserOptional.isPresent()) {
+            Usuario user = existingUserOptional.get();
+            user.setNome(usuarioDTO.getNome());
+            user.setNascimento(usuarioDTO.getNascimento());
+            user.setGenero(usuarioDTO.getGenero());
+            user.setEstadoCivil(usuarioDTO.getEstadoCivil());
+            user.setEndereco(usuarioDTO.getEndereco());
+            user.setTelefone(usuarioDTO.getTelefone());
+            user.setEmail(usuarioDTO.getEmail());
+            user.setCpf(usuarioDTO.getCpf());
+            user.setSenha(usuarioDTO.getSenha());
+            user.setFoto(usuarioDTO.getFoto());
+
+            user.setAltura(usuarioDTO.getAltura());
+            user.setPeso(usuarioDTO.getPeso());
+            user.setIMC(usuarioDTO.getIMC());
+            user.setPa(usuarioDTO.getPa());
+            user.setSick(usuarioDTO.getSick());
+            user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
+            user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
+            user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
+            user.setSurgicalHistory(usuarioDTO.getSurgicalHistory());
+
+
+            user.setPagamento(usuarioDTO.getPagamento());
+            user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
+            user.setPlano(usuarioDTO.getPlano());
+            user.setProfessorResponsavel(usuarioDTO.getProfessorResponsavel());
+
+            
+            user.setObjetivo(usuarioDTO.getObjetivo());
+            user.setExperiencia(usuarioDTO.getExperiencia());
+            user.setAtividadesFisicas(usuarioDTO.getAtividadesFisicas());
+            user.setNivelCondicionamento(usuarioDTO.getNivelCondicionamento());
+            user.setExpectitativa(usuarioDTO.getExpectitativa());
+            usuarioRepository.save(user);
+            return "Update das Informações realizado com sucesso!";
+        }
+        else {
+            throw new UserAlreadyExists("Não foi possível realizar o update, usuário não encontrado !");
+        }
+    }
 
     public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
         if (trainingDTO != null){
