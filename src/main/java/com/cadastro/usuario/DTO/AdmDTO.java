@@ -4,14 +4,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AdmDTO {
     @Id
     private Long id;
     private String nome;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date nascimento;
+    private LocalDate nascimento;
     private String genero;
     private String estadoCivil;
     private String endereco;
@@ -39,11 +39,11 @@ public class AdmDTO {
         this.nome = nome;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 

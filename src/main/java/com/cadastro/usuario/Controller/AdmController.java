@@ -128,6 +128,35 @@ public class AdmController {
             throw new RuntimeException(e);
         }
     }
+
+    /////////////////////////Tela de Manter Professor///////////////////////////////////
+    @GetMapping("/manterAdm")
+    public ModelAndView FormularioDeCadastroAdm(Model model) {
+        model.addAttribute("admDTO", new AdmDTO());
+        return new ModelAndView("/manterAdm");
+    }
+    @PostMapping("/manterAdm")
+    public String showAdmForm(@ModelAttribute AdmDTO admDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
+        try {
+            if (!file.isEmpty()) {
+                admDTO.setFoto(file.getBytes());
+            }
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.updateAdm(admDTO);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/manterAdm";
+        }
+        catch (UserAlreadyExists e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("admDTO", admDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "manterAdm"; // Retorna a view sem redirecionamento
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     /////////////////////////Tela de Cadastro de Treino ///////////////////////////////////
     @GetMapping("/treinoAluno")
     public String showForm(Model model) {
@@ -174,6 +203,11 @@ public class AdmController {
         public ResponseEntity<List<Adm>> getProfessores() {
             List<Adm> professores = admService.listarTodosOsProfessores();
             return ResponseEntity.ok().body(professores);
+        }
+        @GetMapping("/{id}")
+        public ResponseEntity<Adm> getAdmById(@PathVariable Long id) {
+            Adm adm = admService.findAdmById(id);
+            return ResponseEntity.ok().body(adm);
         }
     }
     /////////////////////////*** API Lista de Treinos ***///////////////////////////////////

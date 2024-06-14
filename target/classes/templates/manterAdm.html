@@ -28,8 +28,19 @@
     </div>
 </nav>
 <div class="form-container">
-    <form class="register-form" th:action="@{/cadastroAdm}" th:object="${admDTO}" method="post" enctype="multipart/form-data">
-        <h2>Cadastro de Professor</h2>
+    <form class="register-form" th:action="@{/manterAdm}" th:object="${admDTO}" method="post" enctype="multipart/form-data">
+        <h2>Manter Professor</h2>
+        <fieldset>
+            <legend>Selecione o Professor</legend>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="professoresSelect">Professor:</label>
+                    <select id="professoresSelect" th:field="*{id}"></select>
+                    <input type="hidden" id="nomeAdm" th:field="*{nome}">
+                </div>
+            </div>
+        </fieldset>
+        <script th:src="@{/js/infoAdm.js}"></script>
         <fieldset>
             <legend>Dados Pessoais</legend>
             <div class="form-row">
@@ -44,8 +55,8 @@
 
             <div class="form-row">
                 <div class="input-group">
-                    <label for="nome">Nome completo:</label>
-                    <input type="text" id="nome" th:field="*{nome}" required>
+                    <label for="name">Nome completo:</label>
+                    <input type="text" id="name" th:field="*{nome}" required>
                 </div>
                 <div class="input-group">
                     <label for="cpf">CPF:</label>
@@ -54,12 +65,12 @@
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="dataNascimento">Data de nascimento:</label>
-                    <input type="date" id="dataNascimento" th:field="*{nascimento}" required>
+                    <label for="birthday">Data de nascimento:</label>
+                    <input type="date" id="birthday" th:field="*{nascimento}" required>
                 </div>
                 <div class="input-group">
-                    <label for="genero">Gênero:</label>
-                    <select id="genero" th:field="*{genero}">
+                    <label for="gender">Gênero:</label>
+                    <select id="gender" th:field="*{genero}">
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
@@ -67,8 +78,8 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="estadoCivil">Estado Civil:</label>
-                    <select id="estadoCivil" th:field="*{estadoCivil}">
+                    <label for="civilState">Estado Civil:</label>
+                    <select id="civilState" th:field="*{estadoCivil}">
                         <option value="">Selecione</option>
                         <option value="Casado">Casado</option>
                         <option value="Solteiro">Solteiro</option>
@@ -76,22 +87,15 @@
                         <option value="Viúvo">Viúvo</option>
                     </select>
                 </div>
-                <div class="input-group">
-                    <label for="categoria">Categoria de Acesso:</label>
-                    <select id="categoria" th:field="*{categoria}">
-                        <option value="">Selecione</option>
-                        <option value="Professor">Professor</option>
-                    </select>
-                </div>
             </div>
             <div class="input-group">
-                <label for="endereco">Endereço completo:</label>
-                <input type="text" id="endereco" th:field="*{endereco}" required>
+                <label for="address">Endereço completo:</label>
+                <input type="text" id="address" th:field="*{endereco}" required>
             </div>
             <div class="form-row">
                 <div class="input-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" th:field="*{telefone}" required>
+                    <label for="phone">Telefone:</label>
+                    <input type="tel" id="phone" th:field="*{telefone}" required>
                 </div>
                 <div class="input-group">
                     <label for="email">E-mail:</label>

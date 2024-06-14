@@ -3,7 +3,7 @@ package com.cadastro.usuario.Model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Adm {
@@ -12,7 +12,7 @@ public class Adm {
     private Long id;
     private String nome;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date nascimento;
+    private LocalDate nascimento;
     private String genero;
     private String estadoCivil;
     private String endereco;
@@ -40,11 +40,11 @@ public class Adm {
         this.nome = nome;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 

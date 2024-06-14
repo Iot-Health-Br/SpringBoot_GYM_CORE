@@ -33,17 +33,23 @@ public class AdmService {
         return trainingRepository.findExpiredTrainings(thirtyDaysAgo);
     }
 
-    //Lista de Alunos
+    // Lista de Alunos
     public List<Usuario> listarTodosOsAlunos() {
         return usuarioRepository.findAll();
     }
-    //Lista de Professores
+    // Lista de Professores
     public List<Adm> listarTodosOsProfessores() {
         return admRepository.findAll();
     }
 
+
+    // Lista as Informações do Usuario
     public Usuario findUsuarioById(Long id) {
         return usuarioRepository.findById(id).orElse(null);
+    }
+    // Lista as Informações do Professor
+    public Adm findAdmById(Long id) {
+        return admRepository.findById(id).orElse(null);
     }
 
 
@@ -74,6 +80,30 @@ public class AdmService {
                 adm.setCategoria(admDTO.getCategoria());
                 admRepository.save(adm);
                 return "Usuário cadastrado com sucesso!";
+        }
+    }
+    // Verifica se o Aluno ja está cadastrado, só dps faz o update.
+    @Transactional
+    public String updateAdm(AdmDTO admDTO) throws UserAlreadyExists {
+        Optional<Adm> existingUserOptional = admRepository.findByCpf(admDTO.getCpf());
+
+        if (existingUserOptional.isPresent()) {
+            Adm admUpdate = existingUserOptional.get();
+            admUpdate.setNome(admDTO.getNome());
+            admUpdate.setNascimento(admDTO.getNascimento());
+            admUpdate.setGenero(admDTO.getGenero());
+            admUpdate.setEstadoCivil(admDTO.getEstadoCivil());
+            admUpdate.setEndereco(admDTO.getEndereco());
+            admUpdate.setTelefone(admDTO.getTelefone());
+            admUpdate.setEmail(admDTO.getEmail());
+            admUpdate.setCpf(admDTO.getCpf());
+            admUpdate.setSenha(admDTO.getSenha());
+            admUpdate.setFoto(admDTO.getFoto());
+            admRepository.save(admUpdate);
+            return "Update das Informações do Adm realizado com sucesso!";
+        }
+        else {
+            throw new UserAlreadyExists("Não foi possível realizar o update, ADM não encontrado !");
         }
     }
 
@@ -162,7 +192,7 @@ public class AdmService {
             user.setPlano(usuarioDTO.getPlano());
             user.setProfessorResponsavel(usuarioDTO.getProfessorResponsavel());
 
-            
+
             user.setObjetivo(usuarioDTO.getObjetivo());
             user.setExperiencia(usuarioDTO.getExperiencia());
             user.setAtividadesFisicas(usuarioDTO.getAtividadesFisicas());
