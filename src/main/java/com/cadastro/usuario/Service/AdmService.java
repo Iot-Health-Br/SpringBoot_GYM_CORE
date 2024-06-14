@@ -11,11 +11,13 @@ import com.cadastro.usuario.Model.Usuario;
 import com.cadastro.usuario.Repository.AdmRepository;
 import com.cadastro.usuario.Repository.TrainingRepository;
 import com.cadastro.usuario.Repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdmService {
@@ -31,22 +33,25 @@ public class AdmService {
         return trainingRepository.findExpiredTrainings(thirtyDaysAgo);
     }
 
-    //Lista de Alunos
+    // Lista de Alunos
     public List<Usuario> listarTodosOsAlunos() {
         return usuarioRepository.findAll();
     }
-    //Lista de Professores
+    // Lista de Professores
     public List<Adm> listarTodosOsProfessores() {
         return admRepository.findAll();
     }
 
+
+    // Lista as Informações do Usuario
     public Usuario findUsuarioById(Long id) {
         return usuarioRepository.findById(id).orElse(null);
     }
-
-    public Usuario saveUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    // Lista as Informações do Professor
+    public Adm findAdmById(Long id) {
+        return admRepository.findById(id).orElse(null);
     }
+
 
     // Verifica se os dados do professor ja está cadastrado, só dps salva.
     public String saveAdm(AdmDTO admDTO) throws UserAlreadyExists {
@@ -77,24 +82,30 @@ public class AdmService {
                 return "Usuário cadastrado com sucesso!";
         }
     }
+    // Verifica se o Aluno ja está cadastrado, só dps faz o update.
+    @Transactional
+    public String updateAdm(AdmDTO admDTO) throws UserAlreadyExists {
+        Optional<Adm> existingUserOptional = admRepository.findByCpf(admDTO.getCpf());
 
-    /*
-    // Definindo o ModelMapper como um bean no seu contexto do Spring
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
-    public void saveUser(UsuarioDTO usuarioDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        Usuario user = modelMapper.map(usuarioDTO, Usuario.class);
-
-        try {
-            usuarioRepository.save(user);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar o Aluno", e);
+        if (existingUserOptional.isPresent()) {
+            Adm admUpdate = existingUserOptional.get();
+            admUpdate.setNome(admDTO.getNome());
+            admUpdate.setNascimento(admDTO.getNascimento());
+            admUpdate.setGenero(admDTO.getGenero());
+            admUpdate.setEstadoCivil(admDTO.getEstadoCivil());
+            admUpdate.setEndereco(admDTO.getEndereco());
+            admUpdate.setTelefone(admDTO.getTelefone());
+            admUpdate.setEmail(admDTO.getEmail());
+            admUpdate.setCpf(admDTO.getCpf());
+            admUpdate.setSenha(admDTO.getSenha());
+            admUpdate.setFoto(admDTO.getFoto());
+            admRepository.save(admUpdate);
+            return "Update das Informações do Adm realizado com sucesso!";
         }
-    }*/
+        else {
+            throw new UserAlreadyExists("Não foi possível realizar o update, ADM não encontrado !");
+        }
+    }
 
     // Verifica se os dados do Aluno ja está cadastrado, só dps salva.
     public String saveUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
@@ -126,11 +137,11 @@ public class AdmService {
             user.setPeso(usuarioDTO.getPeso());
             user.setIMC(usuarioDTO.getIMC());
             user.setPa(usuarioDTO.getPa());
-            user.setDoencas(usuarioDTO.getDoencas());
+            user.setSick(usuarioDTO.getSick());
             user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
             user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
             user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
-            user.setHitoricoCirugico(usuarioDTO.getHitoricoCirugico());
+            user.setSurgicalHistory(usuarioDTO.getSurgicalHistory());
             user.setPagamento(true);
             user.setDataMatricula(usuarioDTO.getDataMatricula());
             user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
@@ -146,7 +157,54 @@ public class AdmService {
         }
     }
 
-    /// Utilizando a bliblioteca Mapper para salvar o objeto
+    // Verifica se o Aluno ja está cadastrado, só dps faz o update.
+    @Transactional
+    public String updateUser(UsuarioDTO usuarioDTO) throws UserAlreadyExists {
+        // Verifica se o usuário existe pelo CPF
+        Optional<Usuario> existingUserOptional = usuarioRepository.findByCpf(usuarioDTO.getCpf());
+
+        if (existingUserOptional.isPresent()) {
+            Usuario user = existingUserOptional.get();
+            user.setNome(usuarioDTO.getNome());
+            user.setNascimento(usuarioDTO.getNascimento());
+            user.setGenero(usuarioDTO.getGenero());
+            user.setEstadoCivil(usuarioDTO.getEstadoCivil());
+            user.setEndereco(usuarioDTO.getEndereco());
+            user.setTelefone(usuarioDTO.getTelefone());
+            user.setEmail(usuarioDTO.getEmail());
+            user.setCpf(usuarioDTO.getCpf());
+            user.setSenha(usuarioDTO.getSenha());
+            user.setFoto(usuarioDTO.getFoto());
+
+            user.setAltura(usuarioDTO.getAltura());
+            user.setPeso(usuarioDTO.getPeso());
+            user.setIMC(usuarioDTO.getIMC());
+            user.setPa(usuarioDTO.getPa());
+            user.setSick(usuarioDTO.getSick());
+            user.setLimitacaoFisica(usuarioDTO.getLimitacaoFisica());
+            user.setRestricoesAlimentar(usuarioDTO.getRestricoesAlimentar());
+            user.setUsoMedicamento(usuarioDTO.getUsoMedicamento());
+            user.setSurgicalHistory(usuarioDTO.getSurgicalHistory());
+
+
+            user.setPagamento(usuarioDTO.getPagamento());
+            user.setVencimentoMatricula(usuarioDTO.getVencimentoMatricula());
+            user.setPlano(usuarioDTO.getPlano());
+            user.setProfessorResponsavel(usuarioDTO.getProfessorResponsavel());
+
+
+            user.setObjetivo(usuarioDTO.getObjetivo());
+            user.setExperiencia(usuarioDTO.getExperiencia());
+            user.setAtividadesFisicas(usuarioDTO.getAtividadesFisicas());
+            user.setNivelCondicionamento(usuarioDTO.getNivelCondicionamento());
+            user.setExpectitativa(usuarioDTO.getExpectitativa());
+            usuarioRepository.save(user);
+            return "Update das Informações realizado com sucesso!";
+        }
+        else {
+            throw new UserAlreadyExists("Não foi possível realizar o update, usuário não encontrado !");
+        }
+    }
 
     public String saveTreino(TrainingDTO trainingDTO) throws TrainingRegistred {
         if (trainingDTO != null){

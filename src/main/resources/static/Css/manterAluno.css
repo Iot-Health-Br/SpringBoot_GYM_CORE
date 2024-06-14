@@ -199,3 +199,9 @@ select {
     margin-bottom: 20px;
 }
 
+/*Checkbox do pagamento*/
+.input-group-checkbox{
+    margin-bottom: 15px;
+    margin-right: 20px;
+    height: auto;
+}

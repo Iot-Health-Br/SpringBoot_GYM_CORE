@@ -117,15 +117,16 @@
             <div class="form-row">
                 <div class="input-group">
                     <label for="altura">Altura:</label>
-                    <input type="text" id="altura" th:field="*{altura}" required>
+                    <input type="text" id="altura" th:field="*{altura}" required oninput="calcularIMC()">
                 </div>
                 <div class="input-group">
                     <label for="peso">Peso:</label>
-                    <input type="text" id="peso" th:field="*{peso}" required>
+                    <input type="text" id="peso" th:field="*{peso}" required oninput="calcularIMC()">
                 </div>
+                <script src="/Js/imcUsuario.js" defer></script>
                 <div class="input-group">
-                    <label for="imc">IMC:</label>
-                    <input type="text" id="imc" th:field="*{IMC}" required>
+                    <label for="massIndex">IMC:</label>
+                    <input type="text" id="massIndex" th:field="*{IMC}" readonly>
                 </div>
                 <div class="input-group">
                     <label for="pa">Pressão Arterial:</label>
@@ -135,7 +136,7 @@
             <div class="form-row">
                 <div class="input-group">
                     <label for="doenca">Doenças de Base:</label>
-                    <input type="text" id="doenca" th:field="*{doencas}" required>
+                    <input type="text" id="doenca" th:field="*{sick}" required>
                 </div>
                 <div class="input-group">
                     <label for="limitacao">Limitação Fisica:</label>
@@ -153,8 +154,8 @@
                 </div>
             </div>
             <div class="input-group">
-                <label for="cirurgia">Histórico Cirurgico:</label>
-                <input type="text" id="cirurgia" th:field="*{hitoricoCirugico}" required>
+                <label for="cirurgia">Histórico Cirúrgico:</label>
+                <input type="text" id="cirurgia" th:field="*{surgicalHistory}" required>
             </div>
         </fieldset>
         <fieldset>
@@ -199,9 +200,9 @@
                     <label for="condicionamento">Condicionamento:</label>
                     <select id="condicionamento" th:field="*{nivelCondicionamento}">
                         <option value="">Selecione</option>
-                        <option value="sedentario">Sedentário</option>
-                        <option value="atleta">Atleta</option>
-                        <option value="ativo">Ativo</option>
+                        <option value="Sedentário">Sedentário</option>
+                        <option value="Atleta">Atleta</option>
+                        <option value="Atleta">Ativo</option>
                     </select>
                 </div>
             </div>

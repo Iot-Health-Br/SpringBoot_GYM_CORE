@@ -29,11 +29,11 @@ public class Usuario {
     private Double peso;
     private Double IMC;
     private String pa;
-    private String doencas;
+    private String sick;
     private String limitacaoFisica;
     private String restricoesAlimentar;
     private String usoMedicamento;
-    private String hitoricoCirugico;
+    private String surgicalHistory;
 
     ///Pagamento
     private boolean pagamento;
@@ -179,12 +179,12 @@ public class Usuario {
         this.pa = pa;
     }
 
-    public String getDoencas() {
-        return doencas;
+    public String getSick() {
+        return sick;
     }
 
-    public void setDoencas(String doencas) {
-        this.doencas = doencas;
+    public void setSick(String sick) {
+        this.sick = sick;
     }
 
     public String getLimitacaoFisica() {
@@ -211,12 +211,12 @@ public class Usuario {
         this.usoMedicamento = usoMedicamento;
     }
 
-    public String getHitoricoCirugico() {
-        return hitoricoCirugico;
+    public String getSurgicalHistory() {
+        return surgicalHistory;
     }
 
-    public void setHitoricoCirugico(String hitoricoCirugico) {
-        this.hitoricoCirugico = hitoricoCirugico;
+    public void setSurgicalHistory(String hitoricoCirugico) {
+        this.surgicalHistory = hitoricoCirugico;
     }
 
     public Boolean getPagamento() {

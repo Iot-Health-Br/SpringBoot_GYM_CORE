@@ -45,6 +45,7 @@ public class AdmController {
         modelAndView.addObject("nome", user.getNome());
         return modelAndView;
     }
+
     /////////////////////////Tela de Cadastro Usuário///////////////////////////////////
     @GetMapping("/cadastroUser")
     public ModelAndView mostrarFormularioDeCadastro(Model model) {
@@ -86,7 +87,7 @@ public class AdmController {
                 usuarioDTO.setFoto(file.getBytes());
             }
             // Captura a mensagem de retorno do serviço
-            String resultado = admService.saveUser(usuarioDTO);
+            String resultado = admService.updateUser(usuarioDTO);
             redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
             return "redirect:/manterAluno";
         }
@@ -98,61 +99,6 @@ public class AdmController {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-    @GetMapping("/manterAluno/{id}")
-    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
-        Usuario usuario = admService.findUsuarioById(id);
-        if (usuario == null) {
-            return ResponseEntity.notFound().build();
-        }
-        UsuarioDTO dto = convertToDTO(usuario);
-        return ResponseEntity.ok(dto);
-    }
-
-    private UsuarioDTO convertToDTO(Usuario usuario) {
-        // Aqui você pode usar ModelMapper ou mapear manualmente
-        UsuarioDTO dto = new UsuarioDTO();
-        dto.setId(usuario.getId());
-        dto.setNome(usuario.getNome());
-        dto.setCpf(usuario.getCpf());
-        dto.setFoto(usuario.getFoto());
-        dto.setNascimento(usuario.getNascimento());
-        dto.setGenero(usuario.getGenero());
-        dto.setEstadoCivil(usuario.getEstadoCivil());
-        dto.setEndereco(usuario.getEndereco());
-        dto.setTelefone(usuario.getTelefone());
-        dto.setEmail(usuario.getEmail());
-        dto.setSenha(usuario.getSenha());
-
-        ///Informações da saúde
-        dto.setAltura(usuario.getAltura());
-        dto.setPeso(usuario.getPeso());
-        dto.setIMC(usuario.getIMC());
-        dto.setPa(usuario.getPa());
-        dto.setDoencas(usuario.getDoencas());
-        dto.setLimitacaoFisica(usuario.getLimitacaoFisica());
-        dto.setRestricoesAlimentar(usuario.getRestricoesAlimentar());
-        dto.setUsoMedicamento(usuario.getUsoMedicamento());
-        dto.setHitoricoCirugico(usuario.getHitoricoCirugico());
-
-        ///Dados Pagamento
-        dto.setVencimentoMatricula(usuario.getVencimentoMatricula());
-        dto.setPlano(usuario.getPlano());
-        dto.setProfessorResponsavel(usuario.getProfessorResponsavel());
-
-        // Objetivos
-        dto.setExperiencia(usuario.getExperiencia());
-        dto.setNivelCondicionamento(usuario.getNivelCondicionamento());
-        dto.setObjetivo(usuario.getObjetivo());
-        dto.setAtividadesFisicas(usuario.getAtividadesFisicas());
-        dto.setExpectitativa(usuario.getExpectitativa());
-        // Complete o mapeamento com todos os campos necessários
-        return dto;
-    }
-
-    @PostMapping("/manterAluno/update")
-    public Usuario updateUsuario(@RequestBody Usuario usuario) {
-        return admService.saveUsuario(usuario);
     }
 
     /////////////////////////Tela de Cadastro Professor///////////////////////////////////
@@ -182,6 +128,35 @@ public class AdmController {
             throw new RuntimeException(e);
         }
     }
+
+    /////////////////////////Tela de Manter Professor///////////////////////////////////
+    @GetMapping("/manterAdm")
+    public ModelAndView FormularioDeCadastroAdm(Model model) {
+        model.addAttribute("admDTO", new AdmDTO());
+        return new ModelAndView("/manterAdm");
+    }
+    @PostMapping("/manterAdm")
+    public String showAdmForm(@ModelAttribute AdmDTO admDTO, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
+        try {
+            if (!file.isEmpty()) {
+                admDTO.setFoto(file.getBytes());
+            }
+            // Captura a mensagem de retorno do serviço
+            String resultado = admService.updateAdm(admDTO);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", resultado);
+            return "redirect:/manterAdm";
+        }
+        catch (UserAlreadyExists e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("admDTO", admDTO); // Adiciona o DTO ao model para manter os dados no formulário
+            return "manterAdm"; // Retorna a view sem redirecionamento
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     /////////////////////////Tela de Cadastro de Treino ///////////////////////////////////
     @GetMapping("/treinoAluno")
     public String showForm(Model model) {
@@ -204,23 +179,6 @@ public class AdmController {
             return "treinoAluno"; // Retorna a view sem redirecionamento
         }
     }
-    /////////////////////////Tela de Teste///////////////////////////////////
-    @GetMapping("/teste")
-    public String mostrarFormularioDeCadastroTeste(Model model) {
-        model.addAttribute("user", new Usuario());
-        return "teste";
-    }
-    @PostMapping("/teste")
-    public String cadastrarTeste(Usuario user, RedirectAttributes redirectAttributes) {
-        try {
-            usuarioRepository.save(user); // Tenta salvar os dados no banco
-            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastrado com sucesso!"); // Mensagem de sucesso
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao Cadastrar!"); // Mensagem de erro
-        }
-        return "redirect:/teste"; // Redireciona para a mesma página para evitar reenvio
-    }
-
 
     /////////////////////////*** API Lista de Alunos ***///////////////////////////////////
     @RestController
@@ -231,6 +189,11 @@ public class AdmController {
             List<Usuario> alunos = admService.listarTodosOsAlunos();
             return ResponseEntity.ok().body(alunos);
         }
+        @GetMapping("/{id}")
+        public ResponseEntity<Usuario> getAlunoById(@PathVariable Long id) {
+            Usuario usuario = admService.findUsuarioById(id);
+            return ResponseEntity.ok().body(usuario);
+        }
     }
     /////////////////////////*** API Lista de Professor ***///////////////////////////////////
     @RestController
@@ -240,6 +203,11 @@ public class AdmController {
         public ResponseEntity<List<Adm>> getProfessores() {
             List<Adm> professores = admService.listarTodosOsProfessores();
             return ResponseEntity.ok().body(professores);
+        }
+        @GetMapping("/{id}")
+        public ResponseEntity<Adm> getAdmById(@PathVariable Long id) {
+            Adm adm = admService.findAdmById(id);
+            return ResponseEntity.ok().body(adm);
         }
     }
     /////////////////////////*** API Lista de Treinos ***///////////////////////////////////
