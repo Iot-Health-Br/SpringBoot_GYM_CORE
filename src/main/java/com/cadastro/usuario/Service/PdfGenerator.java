@@ -32,11 +32,11 @@ public class PdfGenerator {
     class BackgroundImageEvent extends PdfPageEventHelper {
         private final float opacity = 0.3f; // Defina a transparência aqui
         //./Logo Imagens/Logo Principal.jpeg
-        private final String imagePath = "./Logo Imagens/GYMCOREBG.png"; // Caminho para a imagem de fundo
+        private final String imagePath = "./Logo Imagens/BackGroundPdf.png"; // Caminho para a imagem de fundo
         private final float imageWidth = 500; // Largura da imagem
         private final float imageHeight = 300; // Altura da imagem
-        private final float posX = 150; // Posição X da imagem
-        private final float posY = 100; // Posição Y da imagem
+        private final float posX = 50; // Posição X da imagem
+        private final float posY = 250; // Posição Y da imagem
 
         @Override
         public void onEndPage(PdfWriter writer, Document document) {
@@ -63,17 +63,19 @@ public class PdfGenerator {
     }
 
     private void addLogoAndAddress(Document document) throws DocumentException, IOException {
+        /*
         // Carrega a imagem do logo
         Image logo = Image.getInstance("./Logo Imagens/Logo Principal.jpeg");
         logo.scaleToFit(100, 100);
         logo.setAlignment(Image.ALIGN_CENTER);
+         */
 
         // Cria um parágrafo para o nome e endereço, centralizando o texto
-        Paragraph name = new Paragraph("GYM CORE\nGoiânia - Goiás\n\n");
+        Paragraph name = new Paragraph("GYM CORE");
         name.setAlignment(Element.ALIGN_CENTER);
 
         // Adiciona o logo e o parágrafo ao documento
-        document.add(logo);
+        //document.add(logo);
         document.add(name);
     }
 
