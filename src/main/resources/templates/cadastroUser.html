@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro User</title>
     <link rel="stylesheet" href="/Css/teste.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 <body>
 <img src="https://github.com/Iot-Health-Br/SpringBoot_GYM_CORE/blob/master/Logo%20Imagens/GYMCOREBG.png?raw=true" class="imagem-fundo">
@@ -167,7 +169,7 @@
                     <input type="date" id="vencMatricula" th:field="*{vencimentoMatricula}" required>
                 </div>
                 <div class="input-group">
-                    <label for="plano">Plano Escolido:</label>
+                    <label for="plano">Plano Escolhido:</label>
                     <select id="plano" th:field="*{plano}">
                         <option value="">Selecione</option>
                         <option value="diamond">Diamond</option>
@@ -179,7 +181,7 @@
             <div class="input-group">
                 <label for="professoresSelect">Professor Responsável:</label>
                 <select id="professoresSelect" th:field="*{professorResponsavel}">
-                <script src="/Js/listUsers.js"></script></select>
+                    <script src="/Js/listUsers.js"></script></select>
             </div>
         </fieldset>
         <fieldset>
@@ -227,5 +229,11 @@
 
     </form>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');
+        $('#telefone').mask('(00) 00000-0000');
+    });
+</script>
 </body>
 </html>
