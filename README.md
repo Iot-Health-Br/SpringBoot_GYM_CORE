@@ -35,7 +35,8 @@
    Será nescessário a criação do banco de dados manualmente com o seguinte nome "gym_core".
 
   
-
+   <img src="https://ibb.co/2s6B608"> 
+   
    Ao copilar o código na IDE será criado as tabelas circuladas de amarelo "adm", "training_user" e "usuario".
 
 3. **Crie um job no banco de dados:**
