@@ -34,7 +34,7 @@
    Nesta Aplicação estamos usando o banco de dados POSTGRES conforme o **[Construído com](#-Construído%C3%A7%C3%A3o)**   
    Será nescessário a criação do banco de dados manualmente com o seguinte nome "gym_core".
 
-   <img src="https://ibb.co/2s6B608"> 
+  
 
    Ao copilar o código na IDE será criado as tabelas circuladas de amarelo "adm", "training_user" e "usuario".
 
@@ -48,32 +48,51 @@
    https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html
    ```
 
-   <img src="https://ibb.co/NyFhKTh"> 
+   
+
+4. Crie o banco de dados:
+
+   Nesta aplicação, estamos usando o banco de dados PostgreSQL. Será necessário a criação do banco de dados manualmente com o seguinte nome "gym_core".
+
+   Ao compilar o código na IDE, serão criadas as tabelas "adm", "training_user" e "usuario".
+
+5. Crie um job no banco de dados:
+
+   Será necessário a criação de um job no banco de dados que será responsável por verificar o status da matrícula do aluno e se ele está inadimplente ou adimplente.
+
+   Para isso, precisamos instalar o PG Agent no PostgreSQL, pois ele não vem instalado por padrão.  
+
+   Siga as instruções para instalar o PG Agent:
+   [PG Agent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html)
+   
+   -- Exemplo de criação de job no PostgreSQL usando PG Agent
+DO $$
+BEGIN
+   PERFORM pg_sleep(86400); -- Intervalo de 1 mes
+   -- Seu código SQL para verificar o status da matrícula
+   -- e atualizar o status de inadimplente/adimplente
+END $$;
 
 
-## ⚙️ Executando os testes
+   Após a instalação, crie um job com as seguintes configurações:
 
-   Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-   Explique que eles verificam esses testes e porquê.
+```sql
+CREATE OR REPLACE FUNCTION alterar_status_matricula()
+RETURNS VOID AS $$
+BEGIN
+    UPDATE training_user
+    SET status = false
+    WHERE (CURRENT_TIMESTAMP - intervalo_de_tempo) >= interval '1 day';
+END;
+$$ LANGUAGE plpgsql;
 
    ```
-   Dar exemplos
-   ```
 
-### ⌨️ E testes de estilo de codificação
+   
 
-   Explique que eles verificam esses testes e porquê.
+## ⚙️ Executando os testes unitários
 
-   ```
-   Dar exemplos
-   ```
-
-## 📦 Implantação
-
-   Adicione notas adicionais sobre como implantar isso em um sistema ativo
+   Basta executar as classes testes na parte inferior da aplicação! Os services estão configurados.
 
 ## 🛠️ Construído com
 
@@ -85,7 +104,25 @@
    * Programa criado usando o banco de dados [Postgres] - https://www.postgresql.org/ - Banco de Dados usado
 
 ## 🖇️ Colaborando
+### 1. Fazer o Fork
 
+1. Na página do repositório que você deseja fazer o fork, clique no botão `Fork` no canto superior direito da página.
+
+2. GitHub irá criar uma cópia do repositório em sua conta. Este processo pode levar alguns segundos.
+
+### 2. Clonar o Repositório Forkado
+
+Depois de fazer o fork, você precisará clonar o repositório para sua máquina local para começar a fazer alterações.
+
+1. Vá para a página do seu repositório forkado. Ele estará localizado em `https://github.com/seu-usuario/nome-do-repositorio`.
+
+2. Clique no botão `Code` e copie a URL do repositório (HTTPS, SSH, ou GitHub CLI).
+   ![Clone Button](https://docs.github.com/assets/images/help/repository/https-url-clone-cli.png)
+
+3. Abra um terminal na sua máquina local e execute o seguinte comando para clonar o repositório:
+
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
 
 
 ## 📌 Versão
@@ -108,4 +145,4 @@
 
    * Conte a outras pessoas sobre este projeto 📢;
    * Convide alguém da equipe para uma cerveja 🍺;
-   * Um agradecimento publicamente 🫂;
+   * Um agradecimento publicamente 👋;
