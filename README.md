@@ -66,13 +66,15 @@
    [PG Agent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html)
    
    -- Exemplo de criação de job no PostgreSQL usando PG Agent
+   
+```
 DO $$
 BEGIN
    PERFORM pg_sleep(86400); -- Intervalo de 1 mes
    -- Seu código SQL para verificar o status da matrícula
    -- e atualizar o status de inadimplente/adimplente
 END $$;
-
+```
 
    Após a instalação, crie um job com as seguintes configurações:
 
