@@ -84,7 +84,7 @@ RETURNS VOID AS $$
 BEGIN
     UPDATE training_user
     SET status = false
-    WHERE (CURRENT_TIMESTAMP - intervalo_de_tempo) >= interval '1 day';
+    WHERE (CURRENT_TIMESTAMP - intervalo_de_tempo) >= interval '1 month';
 END;
 $$ LANGUAGE plpgsql;
 
