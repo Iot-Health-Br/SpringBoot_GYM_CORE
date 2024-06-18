@@ -35,22 +35,22 @@
             <div class="form-row">
                 <table>
                     <thead>
-                        <tr>
-                            <th>ID Treino</th>
-                            <th>Nome do Usuário</th>
-                            <th>Nome do Professor</th>
-                            <th>Data do Treino</th>
-                            <th>Vencimento do Treino</th>
-                        </tr>
+                    <tr>
+                        <th>ID Treino</th>
+                        <th>Nome do Usuário</th>
+                        <th>Nome do Professor</th>
+                        <th>Data do Treino</th>
+                        <th>Vencimento do Treino</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="treino : ${treinoTabela}" th:data-id="${treino.id}">
-                            <td th:text="${treino.id}"></td>
-                            <td th:text="${treino.nameUser}"></td>
-                            <td th:text="${treino.nameTeacher}"></td>
-                            <td th:text="${treino.dataTreino}"></td>
-                            <td th:text="${treino.dataTreino.plusDays(30)}"></td>
-                        </tr>
+                    <tr th:each="treino : ${treinoTabela}" th:data-id="${treino.id}">
+                        <td th:text="${treino.id}"></td>
+                        <td th:text="${treino.nameUser}"></td>
+                        <td th:text="${treino.nameTeacher}"></td>
+                        <td class="dataTreino" th:text="${treino.dataTreino}"></td>
+                        <td class="vencimentoTreino" th:text="${treino.dataTreino.plusDays(30)}"></td>
+                    </tr>
                     </tbody>
                 </table>
                 <script src="/static/Js/tabelaTreino.js"></script>
@@ -58,5 +58,26 @@
         </fieldset>
     </form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function formatarData(data) {
+            const [ano, mes, dia] = data.split('-');
+            return `${dia}-${mes}-${ano}`;
+        }
+
+        const datasTreino = document.querySelectorAll('.dataTreino');
+        const vencimentosTreino = document.querySelectorAll('.vencimentoTreino');
+
+        datasTreino.forEach(function(elemento) {
+            const dataFormatada = formatarData(elemento.textContent);
+            elemento.textContent = dataFormatada;
+        });
+
+        vencimentosTreino.forEach(function(elemento) {
+            const dataFormatada = formatarData(elemento.textContent);
+            elemento.textContent = dataFormatada;
+        });
+    });
+</script>
 </body>
 </html>
