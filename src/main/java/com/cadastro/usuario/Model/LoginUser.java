@@ -1,11 +1,19 @@
 package com.cadastro.usuario.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class LoginUser {
     private Long id;
     private byte[]foto;
     private String nome;
     private String cpf;
     private String telefone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataMatricula;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate vencimentoMatricula;
 
     //Construtor
     /*public LoginUser(Long id, Byte[]foto, String nome, String telefone) {
@@ -20,6 +28,22 @@ public class LoginUser {
         this.foto=foto;
         this.nome = nome;
         this.telefone = telefone;
+    }
+
+    public LocalDate getDataMatricula() {
+        return dataMatricula;
+    }
+
+    public void setDataMatricula(LocalDate dataMatricula) {
+        this.dataMatricula = dataMatricula;
+    }
+
+    public LocalDate getVencimentoMatricula() {
+        return vencimentoMatricula;
+    }
+
+    public void setVencimentoMatricula(LocalDate vencimentoMatricula) {
+        this.vencimentoMatricula = vencimentoMatricula;
     }
 
     // Getters e Setters
